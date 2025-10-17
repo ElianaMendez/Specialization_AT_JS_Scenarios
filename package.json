@@ -1,6 +1,8 @@
 {
   "name": "Specialization_AT_JS_Scenarios",
   "type": "module",
+  "description": "Automated test scenarios for specialization project using WebdriverIO and Cucumber.",
+  "author": "Eliana Méndez",
   "devDependencies": {
     "@wdio/allure-reporter": "^9.20.0",
     "@wdio/cli": "^9.20.0",
@@ -9,6 +11,11 @@
     "@wdio/spec-reporter": "^9.20.0"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "test": "wdio run ./src/config/wdio.conf.js",
+    "wdio": "wdio run ./src/config/wdio.conf.js",
+    "report": "allure generate allure-results --clean -o allure-report && allure open"
+  },
+  "engines": {
+    "node": "18.20.3"
   }
 }
