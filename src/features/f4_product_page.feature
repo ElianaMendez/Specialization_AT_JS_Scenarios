@@ -4,7 +4,8 @@ Feature: Product Details on Practice Software Testing
     So that I can make informed purchase decisions
 
     Scenario: User views details of a selected product
-        Given the user is logged in and on the account page
+        Given the user is logged in
+        And user is on "My account" page
         And the user selects "Home" link on the header
         When the user clicks on the first product title or image
         Then the product details page should open
