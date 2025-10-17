@@ -11,7 +11,7 @@ Feature: Checkout on Practice Software Testing
         When the user clicks on "Proceed to checkout"
         And the user enter username and password
         And user clicks on login button
-        Then the user can see a message "Hello {$name} {$lastname}, you are already logged in. You can proceed to checkout."
+        Then the user can see a message "Hello <name> <lastname>, you are already logged in. You can proceed to checkout."
         When the user clicks on "Proceed to checkout"
         Then user can see a Billing Address form with autocompleted fields
         When the user clicks on "Proceed to checkout"
