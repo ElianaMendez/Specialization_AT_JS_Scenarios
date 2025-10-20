@@ -5,8 +5,10 @@ Feature: User Registration on Practice Software Testing
 
   Scenario: User successfully signs up with valid details
     Given the user is on the Practice Software Testing home page
+    And the "Sign in" button is visible on the header
     When the user clicks on the "Sign in" button
     And clicks on the "Register your account" link
-    And the user enters all required fields on customer registration modal
+    And fills in all required fields in the registration form with valid data
     And clicks on the "Register" button
     Then the user should be redirected to the login page
+    And the login form should be visible

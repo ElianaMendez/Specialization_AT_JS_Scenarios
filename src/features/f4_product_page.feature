@@ -4,9 +4,8 @@ Feature: Product Details on Practice Software Testing
     So that I can make informed purchase decisions
 
     Scenario: User views details of a selected product
-        Given the user is logged in
-        And user is on "My account" page
-        And the user selects "Home" link on the header
-        When the user clicks on the first product title or image
-        Then the product details page should open
-        And it should display product name, price, and description
+        Given the user is on the Practice Software Testing home page
+        When the user clicks on a product title or image
+        Then the system should display the product details page
+        And the page should show the product name, price, and description
+
