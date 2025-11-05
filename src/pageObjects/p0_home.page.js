@@ -1,8 +1,13 @@
 class HomePage {
-    get signin() { return $("//a[text()='Contact']") }
+    get signInLink() { return $('[data-test="nav-sign-in"]') }
 
-    async openLoginPage() {
-        await browser.url('https://practicesoftwaretesting.com/auth/login');
+    async openHomePage() {
+        await browser.url('https://practicesoftwaretesting.com/');
+    }
+
+    async clickSingIn() {
+        await this.signInLink.waitForClickable({ timeout: 5000 });
+        await this.signInLink.click();
     }
 
 }

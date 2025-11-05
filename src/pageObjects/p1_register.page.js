@@ -3,26 +3,33 @@ class RegisterPage {
   get inputLastName() { return $('#last_name'); }
   get inputDateofBirth() { return $('#dob'); }
   get inputStreet() { return $('input[id="street"]'); }
+  get inputPostalCode() { return $('#postal_code') }
   get inputCity() { return $('input[id="city"]'); }
   get inputState() { return $('input[id="state"]'); }
   get inputCountry() { return $('#country'); }
   get inputPhone() { return $('#phone'); }
   get inputEmail() { return $('#email'); }
   get inputPassword() { return $('#password'); }
-  get btnRegister() { return $('button[type="submit"]'); }
+  get btnRegister() { return $('//button[@class="btnSubmit mb-3"]'); }
 
-  async fillRegistrationForm({ firstName, lastName, dateOfBirth, street, email, password }) {
+  async fillRegistrationForm({ firstName, lastName, dateOfBirth, street, postalCode, city, state,
+    country, phone, email, password }) {
     await this.inputFirstName.setValue(firstName);
     await this.inputLastName.setValue(lastName);
     await this.inputDateofBirth.setValue(dateOfBirth);
     await this.inputStreet.setValue(street);
-    
+    await this.inputPostalCode.setValue(postalCode);
+    await this.inputCity.setValue(city);
+    await this.inputState.setValue(state);
+    await this.inputCountry.setValue(country);
+    await this.inputPhone.setValue(phone);
     await this.inputEmail.setValue(email);
     await this.inputPassword.setValue(password);
   }
 
   async submit() {
     await this.btnRegister.click();
+
   }
 }
 
