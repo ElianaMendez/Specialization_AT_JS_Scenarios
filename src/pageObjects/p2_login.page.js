@@ -19,7 +19,7 @@ class LoginPage {
   }
 
   async openCustomerRegistration() {
-    await this.btnRegisterAccount.waitForClickable({ timeout: 5000 });
+    await this.btnRegisterAccount.waitForClickable({ timeout: 10000 });
     await this.btnRegisterAccount.click();
   }
 }

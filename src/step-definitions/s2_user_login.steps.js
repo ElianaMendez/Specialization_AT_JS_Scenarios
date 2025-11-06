@@ -9,7 +9,7 @@ Given('the user is on the login page of the Practice Software Testing site', asy
 });
 
 When('the user enters a valid email address and password', async () => {
-    await LoginPage.login('john123@example.com', 'John015*.');
+    await LoginPage.login('john129@example.com', 'John017*.');
 });
 
 When('clicks on the "Login" button', async () => {

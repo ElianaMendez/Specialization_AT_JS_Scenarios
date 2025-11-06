@@ -32,14 +32,14 @@ When('fills in all required fields in the registration form with valid data', as
         state: 'Bolivar',
         country: 'Colombia',
         phone: '123456789',
-        email: 'john123@example.com',
-        password: 'John015*.',
+        email: 'john129@example.com',
+        password: 'John017*.',
     });
 });
 
 When('clicks on the "Register" button', async () => {
     await RegisterPage.submit();
-    await browser.pause(2000);
+    await browser.pause(5000);
 });
 
 Then('the user should be redirected to the login page', async () => {

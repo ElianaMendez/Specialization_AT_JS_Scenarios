@@ -51,9 +51,10 @@ export const config = {
     //
     capabilities: [{
         browserName: 'chrome'
-    }, //{
-        //browserName: 'firefox'
-        // }
+    },
+    {
+        browserName: 'firefox'
+    }
     ],
 
     //
