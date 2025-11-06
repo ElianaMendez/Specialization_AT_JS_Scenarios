@@ -37,7 +37,7 @@ When('fills in all required fields in the registration form with valid data', as
     });
 });
 
-When('clicks on the {string} button', async (buttonText) => {
+When('clicks on the "Register" button', async () => {
     await RegisterPage.submit();
     await browser.pause(2000);
 });

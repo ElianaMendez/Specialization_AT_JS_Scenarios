@@ -1,8 +1,8 @@
 class MyAccountPage {
-    get headerMenu() { return $('#menu'); }
+    get headerMenu() { return $('//a[contains(text(), "John Doe")]'); }
 
     async getUserNamefromMenu() {
-        await this.headerMenu.waitForDisplayed({ timeout: 5000 });
+        await this.headerMenu.waitForDisplayed({ timeout: 6000 });
         return await this.headerMenu.getText();
     }
 

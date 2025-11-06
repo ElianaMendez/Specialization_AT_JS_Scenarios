@@ -5,7 +5,7 @@ class LoginPage {
   get btnLogin() { return $('input.btnSubmit'); }
   get btnRegisterAccount() { return $('[data-test="register-link"]'); }
 
-  async openLoginPage(){
+  async openLoginPage() {
     await browser.url('auth/login');
   }
 
