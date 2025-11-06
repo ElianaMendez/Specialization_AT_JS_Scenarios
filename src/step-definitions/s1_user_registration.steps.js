@@ -32,8 +32,8 @@ When('fills in all required fields in the registration form with valid data', as
         state: 'Bolivar',
         country: 'Colombia',
         phone: '123456789',
-        email: `john${Date.now()}@example.com`,
-        password: 'Elia015*.',
+        email: 'john123@example.com',
+        password: 'John015*.',
     });
 });
 

@@ -1,8 +1,13 @@
 class MyAccountPage {
-    get headerUsername() { return $('header .user-name'); } // Adjust selector as needed
+    get headerMenu() { return $('#menu'); }
 
-    async open() {
-        await browser.url('https://practicesoftwaretesting.com/account');
+    async getUserNamefromMenu() {
+        await this.headerMenu.waitForDisplayed({ timeout: 5000 });
+        return await this.headerMenu.getText();
+    }
+
+    async openAccountPage() {
+        await browser.url('account');
     }
 }
 

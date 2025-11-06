@@ -5,12 +5,16 @@ class LoginPage {
   get btnLogin() { return $('input.btnSubmit'); }
   get btnRegisterAccount() { return $('[data-test="register-link"]'); }
 
+  async openLoginPage(){
+    await browser.url('auth/login');
+  }
+
   async login(email, password) {
     await this.inputEmail.setValue(email);
     await this.inputPassword.setValue(password);
   }
 
-  async submit() {
+  async submitLogin() {
     await this.btnLogin.click();
   }
 
