@@ -14,7 +14,7 @@ Given('the {string} button is visible on the header', async (buttonText) => {
 });
 
 When('the user clicks on the {string} button', async (buttonText) => {
-    await HomePage.signInLink.click();
+    await HomePage.clickSingIn();
 });
 
 When('clicks on the "Register your account" link', async () => {
@@ -47,5 +47,5 @@ Then('the user should be redirected to the login page', async () => {
 });
 
 Then('the login form should be visible', async () => {
-    await LoginPage.existsLoginForm();
+    await expect(LoginPage.loginTitle).toBeDisplayed();
 });

@@ -5,10 +5,6 @@ class LoginPage {
   get btnLogin() { return $('input.btnSubmit'); }
   get btnRegisterAccount() { return $('[data-test="register-link"]'); }
 
-  async existsLoginForm() {
-    await expect(this.loginTitle).toBeDisplayed();
-  }
-
   async login(email, password) {
     await this.inputEmail.setValue(email);
     await this.inputPassword.setValue(password);
