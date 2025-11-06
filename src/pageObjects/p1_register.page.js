@@ -12,6 +12,7 @@ class RegisterPage {
   get inputPassword() { return $('#password'); }
   get btnRegister() { return $('//button[@class="btnSubmit mb-3"]'); }
 
+
   async fillRegistrationForm({ firstName, lastName, dateOfBirth, street, postalCode, city, state,
     country, phone, email, password }) {
     await this.inputFirstName.setValue(firstName);
@@ -21,7 +22,8 @@ class RegisterPage {
     await this.inputPostalCode.setValue(postalCode);
     await this.inputCity.setValue(city);
     await this.inputState.setValue(state);
-    await this.inputCountry.setValue(country);
+    const dropdown = inputCountry();
+    await dropdown.selectByVisibleText(country);
     await this.inputPhone.setValue(phone);
     await this.inputEmail.setValue(email);
     await this.inputPassword.setValue(password);
