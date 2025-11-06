@@ -6,7 +6,7 @@ class RegisterPage {
   get inputPostalCode() { return $('#postal_code') }
   get inputCity() { return $('input[id="city"]'); }
   get inputState() { return $('input[id="state"]'); }
-  get inputCountry() { return $('#country'); }
+  get selectCountry() { return $('#country'); }
   get inputPhone() { return $('#phone'); }
   get inputEmail() { return $('#email'); }
   get inputPassword() { return $('#password'); }
@@ -22,14 +22,18 @@ class RegisterPage {
     await this.inputPostalCode.setValue(postalCode);
     await this.inputCity.setValue(city);
     await this.inputState.setValue(state);
-    const dropdown = inputCountry();
-    await dropdown.selectByVisibleText(country);
+
+    //dropdown Country
+    await this.selectCountry.waitForDisplayed();
+    await this.selectCountry.selectByVisibleText(country);
+
     await this.inputPhone.setValue(phone);
     await this.inputEmail.setValue(email);
     await this.inputPassword.setValue(password);
   }
 
   async submit() {
+    await this.btnRegister.waitForClickable({ timeout: 5000 });
     await this.btnRegister.click();
 
   }

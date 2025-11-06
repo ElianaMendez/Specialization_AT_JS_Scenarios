@@ -1,5 +1,5 @@
 {
-  "name": "Specialization_AT_JS_Scenarios",
+  "name": "specialization_at_js_scenarios",
   "type": "module",
   "description": "Automated test scenarios for specialization project using WebdriverIO and Cucumber.",
   "author": "Eliana Méndez",

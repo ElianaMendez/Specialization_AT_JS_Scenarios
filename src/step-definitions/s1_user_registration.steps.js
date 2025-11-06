@@ -1,20 +1,20 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import HomePage from '../pageObjects/home.page.js';
-import LoginPage from '../pageObjects/login.page.js';
-import RegisterPage from '../pageObjects/register.page.js';
+import { expect } from '@wdio/globals';
+import HomePage from '../pageObjects/p0_home.page.js';
+import LoginPage from '../pageObjects/p2_login.page.js';
+import RegisterPage from '../pageObjects/p1_register.page.js';
 
 Given('the user is on the Practice Software Testing home page', async () => {
     await HomePage.openHomePage();
 });
 
-Given('the {string} button is visible on the header', async () => {
-    const button = await signInLink();
+Given('the {string} button is visible on the header', async (buttonText) => {
+    const button = await HomePage.signInLink;
     await expect(button).toBeDisplayed();
 });
 
-When('the user clicks on the {string} button', async () => {
-    const button = await signInLink();
-    await button.click();
+When('the user clicks on the {string} button', async (buttonText) => {
+    await HomePage.signInLink.click();
 });
 
 When('clicks on the "Register your account" link', async () => {
@@ -37,8 +37,9 @@ When('fills in all required fields in the registration form with valid data', as
     });
 });
 
-When('clicks on the "Register" button', async () => {
+When('clicks on the {string} button', async (buttonText) => {
     await RegisterPage.submit();
+    await browser.pause(2000);
 });
 
 Then('the user should be redirected to the login page', async () => {
