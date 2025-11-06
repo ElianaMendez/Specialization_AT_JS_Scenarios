@@ -33,7 +33,7 @@ When('fills in all required fields in the registration form with valid data', as
         country: 'Colombia',
         phone: '123456789',
         email: `john${Date.now()}@example.com`,
-        password: 'SecurePass123!',
+        password: 'Elia015*.',
     });
 });
 
@@ -43,7 +43,7 @@ When('clicks on the {string} button', async (buttonText) => {
 });
 
 Then('the user should be redirected to the login page', async () => {
-    await expect(browser).toHaveUrlContaining('/auth/login');
+    await expect(browser).toHaveUrl(expect.stringContaining('/auth/login'));
 });
 
 Then('the login form should be visible', async () => {

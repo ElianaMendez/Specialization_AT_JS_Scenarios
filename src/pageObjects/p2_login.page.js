@@ -1,12 +1,12 @@
 class LoginPage {
-  get LoginForm() { return $('div[class="col-lg-6 auth-form"'); }
+  get loginTitle() { return $('//h3[text()="Login"]') }
   get inputEmail() { return $('#email'); }
   get inputPassword() { return $('#password'); }
   get btnLogin() { return $('input.btnSubmit'); }
   get btnRegisterAccount() { return $('[data-test="register-link"]'); }
 
   async existsLoginForm() {
-    await this.LoginForm.toBeDisplayed();
+    await expect(this.loginTitle).toBeDisplayed();
   }
 
   async login(email, password) {
