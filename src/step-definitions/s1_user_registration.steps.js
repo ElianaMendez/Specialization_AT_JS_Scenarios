@@ -22,28 +22,27 @@ When('clicks on the "Register your account" link', async () => {
 });
 
 When('fills in all required fields in the registration form with valid data', async () => {
-    await RegisterPage.fillRegistrationForm({
-        firstName: 'John',
-        lastName: 'Doe',
-        dateOfBirth: '1985-02-01',
-        street: 'calle 30',
-        postalCode: '12005',
-        city: 'Fantastica',
-        state: 'Bolivar',
-        country: 'Colombia',
-        phone: '123456789',
-        email: 'john129@example.com',
-        password: 'John017*.',
-    });
+    const userData = RegisterPage.generateUniqueUserData();
+    await RegisterPage.fillRegistrationForm(userData);
 });
 
 When('clicks on the "Register" button', async () => {
     await RegisterPage.submit();
-    await browser.pause(5000);
+    await browser.waitUntil(
+        async () => {
+            const url = await browser.getUrl();
+            return url.includes('auth/login');
+        },
+        {
+            timeout: 10000,
+            timeoutMsg: 'Expected redirect to login page after registration'
+        }
+    );
+
 });
 
 Then('the user should be redirected to the login page', async () => {
-    await expect(browser).toHaveUrl(expect.stringContaining('/auth/login'));
+    await expect(browser).toHaveUrl(expect.stringContaining('auth/login'));
 });
 
 Then('the login form should be visible', async () => {
