@@ -3,6 +3,7 @@ Feature: User Registration on Practice Software Testing
   I want to create an account on https://practicesoftwaretesting.com/
   So that I can log in and make purchases
 
+  @smoke
   Scenario: User successfully signs up with valid details
     Given the user is on the Practice Software Testing home page
     And the "Sign in" button is visible on the header

@@ -1,17 +1,6 @@
-import { faker } from '@faker-js/faker';
-
 class DataGenerator {
     async generateUniqueUserData() {
-        const firstName = 'John';
-        const lastName = 'Doe';
-
-        const uniqueEmail = `test-api-${Date.now()}@test-qa.com`;//faker.internet.email({
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     provider: 'test-qa.com',
-        // })
-        //const timestamp = Date.now();
-        //const random = Math.floor(Math.random() * 100);
+        const uniqueEmail = `test-api-${Date.now()}@test-qa.com`;
         return {
             firstName: 'John',
             lastName: 'Doe',

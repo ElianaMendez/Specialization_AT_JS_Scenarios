@@ -3,7 +3,7 @@ Feature: User Login on Practice Software Testing
   I want to log in to https://practicesoftwaretesting.com/
   So that I can access my account
 
-  @validLogin
+  @validLogin @smoke
   Scenario: User logs in successfully with valid credentials
     Given the user is on the login page of the Practice Software Testing site
     And a newly registered user exists with unique valid credentials
