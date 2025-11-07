@@ -1,9 +1,10 @@
 class MyAccountPage {
-    get headerMenu() { return $('//a[contains(text(), "John Doe")]'); }
 
     async getUserNamefromMenu() {
-        await this.headerMenu.waitForDisplayed({ timeout: 6000 });
-        return await this.headerMenu.getText();
+        const menu = await $('[data-test="nav-menu"]');
+        await menu.waitForDisplayed();
+        const text = await menu.getText();
+        return text;
     }
 
     async openAccountPage() {
