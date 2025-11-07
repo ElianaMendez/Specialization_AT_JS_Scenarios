@@ -23,7 +23,7 @@ class RegisterPage {
       street: 'calle 30',
       postalCode: '12005',
       city: 'Fantastica',
-      state: 'Bolivar',
+      state: 'Bolívar',
       country: 'Colombia',
       phone: '123456789',
       email: `john${timestamp}${random}@example.com`,
