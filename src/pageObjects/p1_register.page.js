@@ -26,7 +26,7 @@ class RegisterPage {
 
     //dropdown Country
     await this.selectCountry.waitForDisplayed();
-    await this.selectCountry.selectByAttribute('value', country);//selectByVisibleText(country);
+    await this.selectCountry.selectByVisibleText(country);
 
     await this.inputPhone.setValue(phone);
     await this.inputEmail.setValue(email);

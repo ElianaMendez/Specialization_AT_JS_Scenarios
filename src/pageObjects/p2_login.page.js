@@ -38,7 +38,7 @@ class LoginPage {
         "street": userData.street,
         "city": userData.city,
         "state": userData.state,
-        "country": "CO",//userData.country,
+        "country": 'CO',
         "postal_code": userData.postalCode
       }
     };

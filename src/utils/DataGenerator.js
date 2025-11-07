@@ -5,11 +5,11 @@ class DataGenerator {
         const firstName = 'John';
         const lastName = 'Doe';
 
-        const uniqueEmail = faker.internet.email({
-            firstName: firstName,
-            lastName: lastName,
-            provider: 'test-qa.com',
-        })
+        const uniqueEmail = `test-api-${Date.now()}@test-qa.com`;//faker.internet.email({
+        //     firstName: firstName,
+        //     lastName: lastName,
+        //     provider: 'test-qa.com',
+        // })
         //const timestamp = Date.now();
         //const random = Math.floor(Math.random() * 100);
         return {
@@ -20,7 +20,7 @@ class DataGenerator {
             postalCode: '12005',
             city: 'Fantastica',
             state: 'Bolívar',
-            country: 'CO',
+            country: 'Colombia',
             phone: '123456789',
             email: uniqueEmail,
             password: 'John017*.',

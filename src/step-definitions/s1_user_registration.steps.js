@@ -29,16 +29,10 @@ When('fills in all required fields in the registration form with valid data', as
 
 When('clicks on the "Register" button', async () => {
     await RegisterPage.submit();
-    await browser.waitUntil(
-        async () => {
-            const url = await browser.getUrl();
-            return url.includes('auth/login');
-        },
-        {
-            timeout: 10000,
-            timeoutMsg: 'Expected redirect to login page after registration'
-        }
-    );
+    await LoginPage.loginTitle.waitForDisplayed({
+        timeout: 10000,
+        timeoutMsg: 'Expected redirect to login page after registration'
+    });
 
 });
 
