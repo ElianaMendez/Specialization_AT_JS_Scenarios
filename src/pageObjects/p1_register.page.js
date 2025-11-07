@@ -12,25 +12,6 @@ class RegisterPage {
   get inputPassword() { return $('#password'); }
   get btnRegister() { return $('//button[@class="btnSubmit mb-3"]'); }
 
-  generateUniqueUserData() {
-    const timestamp = Date.now();
-    const random = Math.floor(Math.random() * 10000);
-
-    return {
-      firstName: 'John',
-      lastName: 'Doe',
-      dateOfBirth: '1985-02-01',
-      street: 'calle 30',
-      postalCode: '12005',
-      city: 'Fantastica',
-      state: 'Bolívar',
-      country: 'Colombia',
-      phone: '123456789',
-      email: `john${timestamp}${random}@example.com`,
-      password: 'John017*.',
-    };
-  }
-
   async fillRegistrationForm({
     firstName, lastName, dateOfBirth, street, postalCode, city, state,
     country, phone, email, password
@@ -45,7 +26,7 @@ class RegisterPage {
 
     //dropdown Country
     await this.selectCountry.waitForDisplayed();
-    await this.selectCountry.selectByVisibleText(country);
+    await this.selectCountry.selectByAttribute('value', country);//selectByVisibleText(country);
 
     await this.inputPhone.setValue(phone);
     await this.inputEmail.setValue(email);

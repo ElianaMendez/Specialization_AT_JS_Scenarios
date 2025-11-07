@@ -1,15 +1,30 @@
+// MyAccountPage.js
 class MyAccountPage {
+    async waitForAccountPageLoad() {
+        // Wait for the DOM to be fully loaded
+        await browser.waitUntil(
+            async () => {
+                const state = await browser.execute(() => document.readyState);
+                return state === 'complete';
+            },
+            {
+                timeout: 10000,
+                timeoutMsg: 'La página My Account no terminó de cargar a tiempo'
+            }
+        );
 
-    async getUserNamefromMenu() {
-        const menu = await $('[data-test="nav-menu"]');
-        await menu.waitForDisplayed();
-        const text = await menu.getText();
-        return text;
+        // Wait for the user menu item to be visible
+        const userMenu = await $('[data-test="nav-menu"]');
+        await userMenu.waitForDisplayed({
+            timeout: 8000,
+            timeoutMsg: 'El menú de usuario no apareció a tiempo en la página My Account'
+        });
     }
 
-    async openAccountPage() {
-        await browser.url('account');
+    async getUserNamefromMenu() {
+        return await $('[data-test="nav-menu"]').getText();
     }
 }
 
 export default new MyAccountPage();
+

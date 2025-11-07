@@ -3,6 +3,7 @@ import { expect } from '@wdio/globals';
 import HomePage from '../pageObjects/p0_home.page.js';
 import LoginPage from '../pageObjects/p2_login.page.js';
 import RegisterPage from '../pageObjects/p1_register.page.js';
+import DataGenerator from '../utils/DataGenerator.js';
 
 Given('the user is on the Practice Software Testing home page', async () => {
     await HomePage.openHomePage();
@@ -22,7 +23,7 @@ When('clicks on the "Register your account" link', async () => {
 });
 
 When('fills in all required fields in the registration form with valid data', async () => {
-    const userData = RegisterPage.generateUniqueUserData();
+    const userData = await DataGenerator.generateUniqueUserData();
     await RegisterPage.fillRegistrationForm(userData);
 });
 
