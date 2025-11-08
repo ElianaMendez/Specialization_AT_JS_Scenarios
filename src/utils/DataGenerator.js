@@ -15,6 +15,16 @@ class DataGenerator {
             password: 'John017*.',
         };
     }
+
+    generateInvalidDataToTest() {
+        const invalidEmail = `test-api-${Date.now()}@test-qa.com`;
+        const invalidPassword = `a${Date.now()}`;
+
+        return {
+            email: invalidEmail,
+            password: invalidPassword,
+        }
+    }
 }
 
 

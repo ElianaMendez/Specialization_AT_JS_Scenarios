@@ -34,3 +34,14 @@ Then("the user's name should be displayed in the header", async function () {
     const userNameElementText = await MyAccountPage.getUserNamefromMenu();
     await expect(userNameElementText).toContain(expectedName);
 });
+
+//Invalid Logig
+When('the user enters an invalid email address or password', async () => {
+    const invalidData = await DataGenerator.generateInvalidDataToTest();
+    await LoginPage.login(invalidData.email, invalidData.password);
+});
+
+Then('the system should display an error message "Invalid email or password"', async () => {
+    await LoginPage.waitErrorMessageInvalidData();
+    await expect(LoginPage.alertErrorInvalidData).toHaveText('Invalid email or password');
+});

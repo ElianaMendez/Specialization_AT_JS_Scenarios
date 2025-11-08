@@ -6,6 +6,7 @@ class LoginPage {
   get inputPassword() { return $('#password'); }
   get btnLogin() { return $('input.btnSubmit'); }
   get btnRegisterAccount() { return $('[data-test="register-link"]'); }
+  get alertErrorInvalidData() { return $('div.help-block') }
 
   async openLoginPage() {
     await browser.url('auth/login');
@@ -23,6 +24,10 @@ class LoginPage {
   async openCustomerRegistration() {
     await this.btnRegisterAccount.waitForClickable({ timeout: 10000 });
     await this.btnRegisterAccount.click();
+  }
+
+  async waitErrorMessageInvalidData() {
+    await this.alertErrorInvalidData.waitForDisplayed({ timeout: 3000 });
   }
 
   async registerNewUser(userData) {
