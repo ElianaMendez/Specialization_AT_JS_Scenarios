@@ -27,39 +27,20 @@ Then('the system should display the message "Your profile is successfully update
     await expect(updateMessage).toContain('Your profile is successfully updated!');
 });
 
+// User can not edit the "Email address" field
+Given('the user clicks to "Email address" field', async () => {
+    await ProfilePage.waitForProfilePageLoad();
+    await ProfilePage.inputEmail.click();
+});
 
-/* When('the only non-editable field is "Email address"', async () => {
-    const profilePage = new ProfilePage();
 
-    // Check that the Email field is readonly/disabled
-    const emailField = await profilePage.inputEmail;
+Then('the "Email address" is non-editable field', async () => {
+    const emailField = await ProfilePage.inputEmail;
     const isReadonly = await emailField.getAttribute('readonly');
     const isDisabled = await emailField.getAttribute('disabled');
 
     const isNonEditable = isReadonly !== null || isDisabled !== null;
     expect(isNonEditable).toBe(true);
-
-    // Check that the other fields ARE editable
-    const editableFields = [
-        profilePage.inputFirstName,
-        profilePage.inputLastName,
-        profilePage.inputPhone,
-        profilePage.inputEmail,
-        profilePage.inputStreet,
-        profilePage.inputPostalCode,
-        profilePage.inputCity,
-        profilePage.inputState,
-        profilePage.inputCountry
-    ]
-
-    for (const field of editableFields) {
-        const readonly = await field.getAttribute('readonly');
-        const disable = await field.getAttribute('disable');
-        expect(readonly).toBeNull();
-        expect(disable).toBeNull();
-    }
-
-    console.log(`Verificado: "${fieldName}" es el único campo no editable`);
-}); */
+});
 
 

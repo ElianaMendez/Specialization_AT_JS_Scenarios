@@ -15,3 +15,9 @@ Feature: Manage User Profile on Practice Software Testing
         When the user clicks on the Update Profile button
         Then the system should display the message "Your profile is successfully updated!"
 
+    Scenario: User can not update the Email field
+        Given the user is on the "Profile" section
+        And the user clicks to "Email address" field
+        Then the "Email address" is non-editable field
+
+
