@@ -19,6 +19,7 @@
     "test:login": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f2_user_login.feature",
     "test:validLogin": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f2_user_login.feature --cucumberOpts.tagExpression='@validLogin'",
     "test:invalidLogin": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f2_user_login.feature --cucumberOpts.tagExpression='@invalidLogin'",
+    "test:profile": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f3_user_profile.feature",
     "report": "allure generate allure-results --clean -o allure-report && allure open"
   },
   "engines": {

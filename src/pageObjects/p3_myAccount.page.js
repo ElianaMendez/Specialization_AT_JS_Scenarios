@@ -1,5 +1,12 @@
 // MyAccountPage.js
 class MyAccountPage {
+    get btnProfile() { return $('a[routerlink="profile"]') }
+
+    async openProfilePage() {
+        await this.btnProfile.waitForClickable({ timeout: 10000 });
+        await this.btnProfile.click();
+    }
+
     async waitForAccountPageLoad() {
         // Wait for the DOM to be fully loaded
         await browser.waitUntil(
