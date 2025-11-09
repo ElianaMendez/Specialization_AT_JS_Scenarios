@@ -25,7 +25,7 @@ class HomePage {
         );
 
         // Wait for the user menu item to be visible
-        const userMenu = await $('h5.card-title');
+        const userMenu = await $('img.card-img-top');
         await userMenu.waitForDisplayed({
             timeout: 8000,
             timeoutMsg: 'El producto no apareció a tiempo en la página Home'
