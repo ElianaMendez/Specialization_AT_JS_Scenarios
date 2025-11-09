@@ -9,15 +9,15 @@ Feature: Manage User Profile on Practice Software Testing
         When the user enters a valid email address and password
         And clicks on the "Login" button
 
+    @smoke
     Scenario: User updates profile information successfully
         Given the user is on the "Profile" section
         And the user updates a field that is different from "Email address"
         When the user clicks on the Update Profile button
         Then the system should display the message "Your profile is successfully updated!"
 
+    @smoke
     Scenario: User can not update the Email field
         Given the user is on the "Profile" section
         And the user clicks to "Email address" field
         Then the "Email address" is non-editable field
-
-
