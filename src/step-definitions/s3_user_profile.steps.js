@@ -22,7 +22,7 @@ When('the user clicks on the Update Profile button', async () => {
 });
 
 Then('the system should display the message "Your profile is successfully updated!"', async () => {
-    await ProfilePage.waitUpadatedMessage();
+    await ProfilePage.waitUpdatedMessage();
     const updateMessage = await ProfilePage.alertProfileUpdated.getText();
     await expect(updateMessage).toContain('Your profile is successfully updated!');
 });

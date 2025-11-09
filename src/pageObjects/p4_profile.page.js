@@ -59,7 +59,7 @@ class ProfilePage {
         await this.btnUpdateProfile.waitForClickable({ timeout: 5000 });
     }
 
-    async waitUpadatedMessage() {
+    async waitUpdatedMessage() {
         await this.alertProfileUpdated.waitForDisplayed({ timeout: 10000 });
     }
 }
