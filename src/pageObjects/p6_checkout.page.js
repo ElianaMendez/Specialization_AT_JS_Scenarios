@@ -21,7 +21,7 @@ class Checkout {
             },
             {
                 timeout: 10000,
-                timeoutMsg: 'La página Checkout details no terminó de cargar a tiempo'
+                timeoutMsg: 'The Checkout Details page did not finish loading on time.'
             }
         );
 
@@ -29,7 +29,7 @@ class Checkout {
         const userMenu = await $('button[class="btn btn-success"]');
         await userMenu.waitForDisplayed({
             timeout: 8000,
-            timeoutMsg: 'El botón para proceder con el checkout no apareció a tiempo en la página Checkout'
+            timeoutMsg: 'The Proceed to Checkout button did not appear on the Checkout page on time.'
         });
     }
 

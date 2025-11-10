@@ -26,7 +26,7 @@ class ProfilePage {
             },
             {
                 timeout: 10000,
-                timeoutMsg: 'La página Profile no terminó de cargar a tiempo'
+                timeoutMsg: 'The Profile page did not finish loading on time.'
             }
         );
 
@@ -34,7 +34,7 @@ class ProfilePage {
         const updateProfileButton = await $('button[type="submit"]');
         await updateProfileButton.waitForDisplayed({
             timeout: 8000,
-            timeoutMsg: 'El botón de actualizar Profile no apareció a tiempo en la página Profile'
+            timeoutMsg: 'The Update Profile button did not appear on the Profile page on time.'
         });
     }
 

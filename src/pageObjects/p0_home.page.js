@@ -20,7 +20,7 @@ class HomePage {
             },
             {
                 timeout: 10000,
-                timeoutMsg: 'La página Home no terminó de cargar a tiempo'
+                timeoutMsg: 'The Home page did not finish loading on time'
             }
         );
 
@@ -28,7 +28,7 @@ class HomePage {
         const userMenu = await $('img.card-img-top');
         await userMenu.waitForDisplayed({
             timeout: 8000,
-            timeoutMsg: 'El producto no apareció a tiempo en la página Home'
+            timeoutMsg: 'The product did not appear on the homepage on time.'
         });
     }
 

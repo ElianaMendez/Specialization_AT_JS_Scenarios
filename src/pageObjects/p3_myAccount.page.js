@@ -21,7 +21,7 @@ class MyAccountPage {
             },
             {
                 timeout: 50000,
-                timeoutMsg: 'La página My Account no terminó de cargar a tiempo'
+                timeoutMsg: 'The My Account page did not finish loading on time.'
             }
         );
 
@@ -30,7 +30,7 @@ class MyAccountPage {
         try {
             await userMenu.waitForDisplayed({
                 timeout: 50000,
-                timeoutMsg: 'El menú de usuario no apareció a tiempo en la página My Account'
+                timeoutMsg: 'The user menu did not appear on the My Account page on time.'
             });
         } catch (error) {
             console.warn('User menu not displayed within timeout, continuing anyway:', error.message);

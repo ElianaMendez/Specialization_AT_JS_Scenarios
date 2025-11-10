@@ -15,7 +15,7 @@ class ProductDetailsPage {
             },
             {
                 timeout: 10000,
-                timeoutMsg: 'La página Product details no terminó de cargar a tiempo'
+                timeoutMsg: 'The Product Details page did not finish loading on time.'
             }
         );
 
@@ -23,7 +23,7 @@ class ProductDetailsPage {
         const userMenu = await $('#btn-add-to-cart');
         await userMenu.waitForDisplayed({
             timeout: 8000,
-            timeoutMsg: 'El botón de agregar al carrito no apareció a tiempo en la página Product details'
+            timeoutMsg: 'The Add to Cart button did not appear on the Product Details page on time.'
         });
     }
 
