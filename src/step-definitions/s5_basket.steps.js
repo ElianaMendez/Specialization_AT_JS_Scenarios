@@ -11,6 +11,7 @@ Then('the system should display a message Product added to shopping cart', async
     await ProductDetailsPage.waitForAddedProductMessage();
     const productAlertMessage = await ProductDetailsPage.alerProductAdded.getText();
     await expect(productAlertMessage).toContain("Product added to shopping cart.");
+    await ProductDetailsPage.alerProductAdded.waitForExist({ reverse: true, timeout: 10000 });
 });
 
 Then('the cart icon should show an updated item count', async () => {

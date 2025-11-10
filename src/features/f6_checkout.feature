@@ -14,6 +14,7 @@ Feature: Checkout on Practice Software Testing
         Given the user go to the home page
         When the user clicks on a product title or image
         And clicks on the "Add to cart" button
+        Then the system should display a message Product added to shopping cart
 
     @checkout
     Scenario Outline: User completes checkout with <paymentMethod> payment
