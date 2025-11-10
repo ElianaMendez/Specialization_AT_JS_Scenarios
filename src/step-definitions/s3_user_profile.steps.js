@@ -18,10 +18,10 @@ Given('the user updates a field that is different from "Email address"', async (
 When('the user clicks on the Update Profile button', async () => {
     await ProfilePage.waitUpdateProfileClickable();
     await ProfilePage.btnUpdateProfile.click();
-    //await browser.debug();
+
 });
 
-Then('the system should display the message "Your profile is successfully updated!"', async () => {
+Then('the system should display the message Your profile is successfully updated', async () => {
     await ProfilePage.waitUpdatedMessage();
     const updateMessage = await ProfilePage.alertProfileUpdated.getText();
     await expect(updateMessage).toContain('Your profile is successfully updated!');

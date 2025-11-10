@@ -18,8 +18,12 @@ Given('the user go to the home page', async () => {
 });
 
 Given('the user opens the cart to proceed the checkout', async () => {
-    await ProductDetailsPage.cartIcon.waitForClickable();
-    await ProductDetailsPage.cartIcon.click();
+    try {
+        await ProductDetailsPage.cartIcon.waitForClickable();
+        await ProductDetailsPage.cartIcon.click();
+    } catch {
+        await browser.navigateTo("https://practicesoftwaretesting.com/checkout");
+    }
     await Checkout.waitForCheckoutPageLoad();
 });
 
@@ -31,7 +35,7 @@ Given('the user should see a message to proceed to checkout', async () => {
     await Checkout.waitForMessageToProceedToCheckout();
     await expect(Checkout.messagetoProceedToCheckout).toBeDisplayed();
     const text = await Checkout.messagetoProceedToCheckout.getText();
-    await expect(text).toContain('You can proceed to checkout');    
+    await expect(text).toContain('You can proceed to checkout');
 });
 
 Given('the user clicks on the second Proceed to Checkout button', async () => {

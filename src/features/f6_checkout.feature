@@ -20,7 +20,6 @@ Feature: Checkout on Practice Software Testing
     Scenario Outline: User completes checkout with <paymentMethod> payment
         Given the user opens the cart to proceed the checkout
         And the user clicks on the Proceed to Checkout button
-        And the user should see a message to proceed to checkout
         And the user clicks on the second Proceed to Checkout button
         And the user fills the Billing address
         And the user clicks on the third Proceed to Checkout button

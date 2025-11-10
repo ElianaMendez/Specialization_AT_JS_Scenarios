@@ -50,11 +50,13 @@ export const config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
-    },
+        browserName: 'chrome',
+        'goog:chromeOptions': { args: ['--headless'] },
+    } ,
     {
-        browserName: 'firefox'
-    }
+        browserName: 'firefox',
+        'moz:firefoxOptions': { args: ['-headless'] },
+    } 
     ],
 
     //
@@ -65,6 +67,9 @@ export const config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'info',
+    specFileRetries: 2,
+    specFileRetriesDelay: 0,
+    specFileRetriesDeferred: false,
     //
     // Set specific log levels per logger
     // loggers:

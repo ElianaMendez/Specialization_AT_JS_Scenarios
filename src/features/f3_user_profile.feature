@@ -14,7 +14,7 @@ Feature: Manage User Profile on Practice Software Testing
         Given the user is on the "Profile" section
         And the user updates a field that is different from "Email address"
         When the user clicks on the Update Profile button
-        Then the system should display the message "Your profile is successfully updated!"
+        Then the system should display the message Your profile is successfully updated
 
     @smoke
     Scenario: User can not update the Email field
