@@ -6,7 +6,7 @@ Feature: User Registration on Practice Software Testing
   @smoke
   Scenario: User successfully signs up with valid details
     Given the user is on the Practice Software Testing home page
-    And the "Sign in" button is visible on the header
+    And the Sign in button is visible on the header
     When the user clicks on the "Sign in" button
     And clicks on the "Register your account" link
     And fills in all required fields in the registration form with valid data

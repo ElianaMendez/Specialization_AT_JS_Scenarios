@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect } from '@wdio/globals';
+import { browser, expect } from '@wdio/globals';
 import HomePage from '../pageObjects/p0_home.page.js';
 import LoginPage from '../pageObjects/p2_login.page.js';
 import RegisterPage from '../pageObjects/p1_register.page.js';
@@ -9,9 +9,10 @@ Given('the user is on the Practice Software Testing home page', async () => {
     await HomePage.openHomePage();
 });
 
-Given('the {string} button is visible on the header', async (buttonText) => {
-    const button = await HomePage.signInLink;
-    await expect(button).toBeDisplayed();
+Given('the Sign in button is visible on the header', async () => {
+    await HomePage.waitForHomePageLoad();
+    await expect(HomePage.signInLink).toBeDisplayed();
+
 });
 
 When('the user clicks on the {string} button', async (buttonText) => {

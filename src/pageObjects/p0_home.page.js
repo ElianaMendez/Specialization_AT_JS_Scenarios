@@ -6,7 +6,7 @@ class HomePage {
         await browser.url('https://practicesoftwaretesting.com/');
     }
 
-    async clickSingIn() {
+    async clickSingIn() {        
         await this.signInLink.waitForClickable({ timeout: 5000 });
         await this.signInLink.click();
     }

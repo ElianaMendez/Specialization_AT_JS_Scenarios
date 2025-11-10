@@ -51,12 +51,21 @@ export const config = {
     //
     capabilities: [{
         browserName: 'chrome',
-        'goog:chromeOptions': { args: ['--headless'] },
-    } ,
+        'goog:chromeOptions': {
+            args: [
+                '--headless=new',  // Use new headless mode
+                '--window-size=1920,1080',
+                '--disable-gpu',
+                '--no-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-blink-features=AutomationControlled'
+            ]
+        }
+    },
     {
         browserName: 'firefox',
         'moz:firefoxOptions': { args: ['-headless'] },
-    } 
+    }
     ],
 
     //
