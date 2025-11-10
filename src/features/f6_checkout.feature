@@ -16,7 +16,7 @@ Feature: Checkout on Practice Software Testing
         And clicks on the "Add to cart" button
         Then the system should display a message Product added to shopping cart
 
-    @checkout
+    @checkout @smoke
     Scenario Outline: User completes checkout with <paymentMethod> payment
         Given the user opens the cart to proceed the checkout
         And the user clicks on the Proceed to Checkout button
