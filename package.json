@@ -22,6 +22,7 @@
     "test:profile": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f3_user_profile.feature",
     "test:homeProduct": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f0_home_page.feature",
     "test:basket": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f5_basket.feature",
+    "test:checkout": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f6_checkout.feature",
     "report": "allure generate allure-results --clean -o allure-report && allure open"
   },
   "engines": {

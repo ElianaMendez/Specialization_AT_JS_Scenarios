@@ -1,6 +1,7 @@
 // MyAccountPage.js
 class MyAccountPage {
     get btnProfile() { return $('a[routerlink="profile"]') }
+    get iconHomePage() { return $('a[class="nav-link active"]') }
 
     async openProfilePage() {
         await this.btnProfile.waitForClickable({ timeout: 10000 });
@@ -30,6 +31,10 @@ class MyAccountPage {
 
     async getUserNamefromMenu() {
         return await $('[data-test="nav-menu"]').getText();
+    }
+
+    async goToTheHomePage() {
+        await this.iconHomePage.click();
     }
 }
 
