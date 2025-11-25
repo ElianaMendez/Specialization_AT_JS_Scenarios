@@ -1,6 +1,7 @@
 import axios from 'axios';
+import BasePage from '../../../core/base/base.page.js';
 
-class LoginPage {
+class LoginPage extends BasePage {
   get loginTitle() { return $('//h3[text()="Login"]') }
   get inputEmail() { return $('#email'); }
   get inputPassword() { return $('#password'); }
@@ -8,8 +9,10 @@ class LoginPage {
   get btnRegisterAccount() { return $('[data-test="register-link"]'); }
   get alertErrorInvalidData() { return $('div.help-block') }
 
-  async openLoginPage() {
-    await browser.url('auth/login');
+  static PATH = 'auth/login';
+
+  async open() {
+    await super.open(LoginPage.PATH);
   }
 
   async login(email, password) {
@@ -17,17 +20,16 @@ class LoginPage {
     await this.inputPassword.setValue(password);
   }
 
-  async submitLogin() {
-    await this.btnLogin.click();
+  async clickButtonRegisterAccount() {
+    await this.click(this.btnRegisterAccount);
   }
 
-  async openCustomerRegistration() {
-    await this.btnRegisterAccount.waitForClickable({ timeout: 10000 });
-    await this.btnRegisterAccount.click();
+  async waitForLoginPageLoad() {
+    await this.waitForPageLoad(this.btnLogin, 'login');
   }
 
-  async waitErrorMessageInvalidData() {
-    await this.alertErrorInvalidData.waitForDisplayed({ timeout: 3000 });
+  async isLoginFormVisible() {
+    return await this.loginTitle.isDisplayed();
   }
 
   async registerNewUser(userData) {

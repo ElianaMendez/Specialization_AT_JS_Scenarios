@@ -1,6 +1,6 @@
 import { When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
-import ProductDetailsPage from '../pageObjects/p5_product_details.page';
+import ProductDetailsPage from '../pages/ProductDetails.page';
 
 When('clicks on the "Add to cart" button', async () => {
     await ProductDetailsPage.waitForProductDetailsPageLoad();

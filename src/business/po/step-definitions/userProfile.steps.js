@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { browser, expect } from '@wdio/globals';
-import MyAccountPage from '../pageObjects/p3_myAccount.page.js';
-import ProfilePage from '../pageObjects/p4_profile.page.js'
+import MyAccountPage from '../pages/MyAccount.page.js';
+import ProfilePage from '../pages/Profile.page.js';
 
 Given('the user is on the "Profile" section', async () => {
     await MyAccountPage.waitForAccountPageLoad();

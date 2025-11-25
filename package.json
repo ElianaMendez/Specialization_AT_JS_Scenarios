@@ -13,16 +13,16 @@
     "axios": "^1.13.2"
   },
   "scripts": {
-    "test": "wdio run ./src/config/wdio.conf.js",
-    "test:smoke": "wdio run ./src/config/wdio.conf.js --cucumberOpts.tagExpression='@smoke'",
-    "test:register": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f1_user_registration.feature",
-    "test:login": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f2_user_login.feature",
-    "test:validLogin": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f2_user_login.feature --cucumberOpts.tagExpression='@validLogin'",
-    "test:invalidLogin": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f2_user_login.feature --cucumberOpts.tagExpression='@invalidLogin'",
-    "test:profile": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f3_user_profile.feature",
-    "test:homeProduct": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f0_home_page.feature",
-    "test:basket": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f5_basket.feature",
-    "test:checkout": "wdio run ./src/config/wdio.conf.js --spec ./src/features/f6_checkout.feature",
+    "test": "wdio run ./src/core/config/wdio.conf.js",
+    "test:smoke": "wdio run ./src/core/config/wdio.conf.js --cucumberOpts.tagExpression='@smoke'",
+    "test:register": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/user_registration.feature",
+    "test:login": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/user_login.feature",
+    "test:validLogin": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/user_login.feature --cucumberOpts.tagExpression='@validLogin'",
+    "test:invalidLogin": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/user_login.feature --cucumberOpts.tagExpression='@invalidLogin'",
+    "test:profile": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/user_profile.feature",
+    "test:homeProduct": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/home_page.feature",
+    "test:basket": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/basket.feature",
+    "test:checkout": "wdio run ./src/core/config/wdio.conf.js --spec ./src/test/features/checkout.feature",
     "report": "allure generate allure-results --clean -o allure-report && allure open"
   },
   "engines": {

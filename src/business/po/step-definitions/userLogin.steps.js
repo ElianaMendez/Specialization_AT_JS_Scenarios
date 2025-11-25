@@ -1,11 +1,12 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { browser, expect } from '@wdio/globals';
-import LoginPage from '../pageObjects/p2_login.page.js';
-import MyAccountPage from '../pageObjects/p3_myAccount.page.js';
-import DataGenerator from '../utils/DataGenerator.js';
+import LoginPage from '../pages/Login.page.js';
+import MyAccountPage from '../pages/MyAccount.page.js';
+import DataGenerator from '../../../test/data/DataGenerator.js';
+import BasePage from '../../../core/base/base.page.js';
 
 Given('the user is on the login page of the Practice Software Testing site', async () => {
-    await LoginPage.openLoginPage();
+    await LoginPage.open();
 });
 
 Given('a newly registered user exists with unique valid credentials', async function () {
@@ -21,11 +22,11 @@ When('the user enters a valid email address and password', async function () {
 });
 
 When('clicks on the "Login" button', async () => {
-    await LoginPage.submitLogin();
+    await BasePage.click(LoginPage.btnLogin);
 });
 
 Then('the user should be redirected to the "My account" page', async () => {
-    await MyAccountPage.waitForAccountPageLoad();
+    await BasePage.waitForPageLoad(MyAccountPage.navMenu);
     await expect(browser).toHaveUrl(expect.stringContaining('/account'));
 });
 
@@ -42,6 +43,6 @@ When('the user enters an invalid email address or password', async () => {
 });
 
 Then('the system should display an error message "Invalid email or password"', async () => {
-    await LoginPage.waitErrorMessageInvalidData();
+    await BasePage.waitForVisible(LoginPage.alertErrorInvalidData);
     await expect(LoginPage.alertErrorInvalidData).toHaveText('Invalid email or password');
 });

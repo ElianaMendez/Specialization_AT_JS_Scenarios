@@ -1,4 +1,6 @@
-class RegisterPage {
+import BasePage from "../../../core/base/base.page";
+
+class RegisterPage extends BasePage {
   get inputFirstName() { return $('#first_name'); }
   get inputLastName() { return $('#last_name'); }
   get inputDateofBirth() { return $('#dob'); }
@@ -35,7 +37,7 @@ class RegisterPage {
 
   async submit() {
     await this.btnRegister.waitForClickable({ timeout: 5000 });
-    await this.btnRegister.click();
+    await this.click(this.btnRegister);
 
   }
 }

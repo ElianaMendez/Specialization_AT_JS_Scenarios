@@ -1,4 +1,6 @@
-class ProfilePage {
+import BasePage from "../../../core/base/base.page"
+
+class ProfilePage extends BasePage {
     get inputFirstName() { return $('#first_name') }
     get inputLastName() { return $('#last_name') }
     get inputPhone() { return $('#phone') }

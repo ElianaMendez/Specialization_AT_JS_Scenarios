@@ -1,12 +1,13 @@
 import { When, Then } from '@wdio/cucumber-framework';
 import { browser, expect } from '@wdio/globals';
-import Homepage from '../pageObjects/p0_home.page';
-import ProductDetailsPage from '../pageObjects/p5_product_details.page'
+import HomePage from '../pages/Home.page.js';
+import ProductDetailsPage from '../pages/ProductDetails.page'
+import BasePage from '../../../core/base/base.page';
 
 
 When('the user clicks on a product title or image', async () => {
-    await Homepage.waitForHomePageLoad();
-    await Homepage.homeProduct.click();
+    await BasePage.waitForPageLoad(Homepage.homeProduct);
+    await BasePage.click(Homepage.homeProduct)
 });
 
 Then('the system should display the product details page', async () => {

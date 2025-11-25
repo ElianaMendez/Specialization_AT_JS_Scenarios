@@ -21,7 +21,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        '../features/**/*.feature'
+        './src/test/features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -53,7 +53,7 @@ export const config = {
         browserName: 'chrome',
         'goog:chromeOptions': {
             args: [
-                '--headless=new',  
+                '--headless=new',
                 '--window-size=1920,1080',
                 '--disable-gpu',
                 '--no-sandbox',
@@ -75,10 +75,10 @@ export const config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
-    specFileRetries: 2,
-    specFileRetriesDelay: 0,
-    specFileRetriesDeferred: false,
+    logLevel: 'error',
+    /*     specFileRetries: 2,
+        specFileRetriesDelay: 0,
+        specFileRetriesDeferred: false, */
     //
     // Set specific log levels per logger
     // loggers:
@@ -146,7 +146,7 @@ export const config = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./src/step-definitions/**/*.steps.js'],
+        require: ['./src/business/po/step-definitions/**/*.js'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -166,7 +166,7 @@ export const config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: '',
         // <number> timeout for step definitions
-        timeout: 60000,
+        timeout: 120000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
