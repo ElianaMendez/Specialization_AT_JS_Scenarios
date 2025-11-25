@@ -18,21 +18,21 @@ class RegisterPage extends BasePage {
     firstName, lastName, dateOfBirth, street, postalCode, city, state,
     country, phone, email, password
   }) {
-    await this.inputFirstName.setValue(firstName);
-    await this.inputLastName.setValue(lastName);
-    await this.inputDateofBirth.setValue(dateOfBirth);
-    await this.inputStreet.setValue(street);
-    await this.inputPostalCode.setValue(postalCode);
-    await this.inputCity.setValue(city);
-    await this.inputState.setValue(state);
+    await this.setInputValue(this.inputFirstName, firstName);
+    await this.setInputValue(this.inputLastName, lastName);
+    await this.setInputValue(this.inputDateofBirth, dateOfBirth);
+    await this.setInputValue(this.inputStreet, street);
+    await this.setInputValue(this.inputPostalCode, postalCode);
+    await this.setInputValue(this.inputCity, city);
+    await this.setInputValue(this.inputState, state);
 
-    //dropdown Country
+    // Dropdown Country 
     await this.selectCountry.waitForDisplayed();
     await this.selectCountry.selectByVisibleText(country);
 
-    await this.inputPhone.setValue(phone);
-    await this.inputEmail.setValue(email);
-    await this.inputPassword.setValue(password);
+    await this.setInputValue(this.inputPhone, phone);
+    await this.setInputValue(this.inputEmail, email);
+    await this.setInputValue(this.inputPassword, password);
   }
 
   async submit() {
