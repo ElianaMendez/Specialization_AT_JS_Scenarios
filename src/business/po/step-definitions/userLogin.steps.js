@@ -3,7 +3,6 @@ import { browser, expect } from '@wdio/globals';
 import LoginPage from '../pages/Login.page.js';
 import MyAccountPage from '../pages/MyAccount.page.js';
 import DataGenerator from '../../../test/data/DataGenerator.js';
-import BasePage from '../../../core/base/base.page.js';
 
 Given('the user is on the login page of the Practice Software Testing site', async () => {
     await LoginPage.open();
@@ -27,7 +26,6 @@ When('clicks on the Login button', async () => {
 
 Then('the user should be redirected to the My account page', async () => {
     await MyAccountPage.waitForAccountPageLoad();
-    //await expect(browser).toHaveUrl(expect.stringContaining('/account'));
 });
 
 Then("the user's name should be displayed in the header", async function () {
