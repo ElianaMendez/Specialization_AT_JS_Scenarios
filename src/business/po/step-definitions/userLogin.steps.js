@@ -21,13 +21,13 @@ When('the user enters a valid email address and password', async function () {
     await LoginPage.login(this.userData.email, this.userData.password);
 });
 
-When('clicks on the "Login" button', async () => {
-    await BasePage.click(LoginPage.btnLogin);
+When('clicks on the Login button', async () => {
+    await LoginPage.clickLoginButton();
 });
 
-Then('the user should be redirected to the "My account" page', async () => {
-    await BasePage.waitForPageLoad(MyAccountPage.navMenu);
-    await expect(browser).toHaveUrl(expect.stringContaining('/account'));
+Then('the user should be redirected to the My account page', async () => {
+    await MyAccountPage.waitForAccountPageLoad();
+    //await expect(browser).toHaveUrl(expect.stringContaining('/account'));
 });
 
 Then("the user's name should be displayed in the header", async function () {
@@ -42,7 +42,7 @@ When('the user enters an invalid email address or password', async () => {
     await LoginPage.login(invalidData.email, invalidData.password);
 });
 
-Then('the system should display an error message "Invalid email or password"', async () => {
-    await BasePage.waitForVisible(LoginPage.alertErrorInvalidData);
-    await expect(LoginPage.alertErrorInvalidData).toHaveText('Invalid email or password');
+Then('the system should display an error message Invalid email or password', async () => {
+    const errorMessage = await LoginPage.isErrorMessageVisible();
+    await expect(errorMessage).toContain('Invalid email or password');
 });

@@ -12,6 +12,10 @@ class MyAccountPage extends BasePage {
         await super.open(MyAccountPage.PATH);
     }
 
+    async waitForAccountPageLoad() {
+        await this.waitForPageLoad(this.navMenu, 'account');
+    }
+
     async getUserNamefromMenu() {
         const maxAttempts = 3;
 

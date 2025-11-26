@@ -16,12 +16,16 @@ class LoginPage extends BasePage {
   }
 
   async login(email, password) {
-    await this.inputEmail.setValue(email);
-    await this.inputPassword.setValue(password);
+    await this.setInputValue(this.inputEmail, email);
+    await this.setInputValue(this.inputPassword, password);
   }
 
-  async clickButtonRegisterAccount() {
+  async clickRegisterAccountButton() {
     await this.click(this.btnRegisterAccount);
+  }
+
+  async clickLoginButton() {
+    await this.click(this.btnLogin);
   }
 
   async waitForLoginPageLoad() {
@@ -30,6 +34,11 @@ class LoginPage extends BasePage {
 
   async isLoginFormVisible() {
     return await this.loginTitle.isDisplayed();
+  }
+
+  async isErrorMessageVisible() {
+    await this.waitForVisible(this.alertErrorInvalidData);
+    return await this.getText(this.alertErrorInvalidData);
   }
 
   async registerNewUser(userData) {
