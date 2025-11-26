@@ -1,45 +1,37 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { browser, expect } from '@wdio/globals';
+import { expect } from '@wdio/globals';
 import MyAccountPage from '../pages/MyAccount.page.js';
 import ProfilePage from '../pages/Profile.page.js';
 
-Given('the user is on the "Profile" section', async () => {
+Given('the user is on the Profile section', async () => {
     await MyAccountPage.waitForAccountPageLoad();
-    await MyAccountPage.openProfilePage();
+    await MyAccountPage.goToProfilePage();
     await ProfilePage.waitForProfilePageLoad();
-    await expect(browser).toHaveUrl(expect.stringContaining('/account/profile'));
 });
 
-Given('the user updates a field that is different from "Email address"', async () => {
-    await ProfilePage.waitFieldsNonEmpty();
-    await ProfilePage.inputFirstName.setValue('New name');
+Given('the user updates a field that is different from Email address', async () => {
+    await ProfilePage.inputUpdatedName();
 });
 
 When('the user clicks on the Update Profile button', async () => {
-    await ProfilePage.waitUpdateProfileClickable();
-    await ProfilePage.btnUpdateProfile.click();
-
+    await ProfilePage.clickUpdateProfileButton();
 });
 
 Then('the system should display the message Your profile is successfully updated', async () => {
     await ProfilePage.waitUpdatedMessage();
-    const updateMessage = await ProfilePage.alertProfileUpdated.getText();
-    await expect(updateMessage).toContain('Your profile is successfully updated!');
+    const updatedMessage = await ProfilePage.getUpdatedMessage();
+    await expect(updatedMessage).toContain('Your profile is successfully updated!');
 });
 
 // User can not edit the "Email address" field
-Given('the user clicks to "Email address" field', async () => {
+Given('the user clicks to Email address field', async () => {
     await ProfilePage.waitForProfilePageLoad();
-    await ProfilePage.inputEmail.click();
+    await ProfilePage.clickEmailField();
 });
 
 
-Then('the "Email address" is non-editable field', async () => {
-    const emailField = await ProfilePage.inputEmail;
-    const isReadonly = await emailField.getAttribute('readonly');
-    const isDisabled = await emailField.getAttribute('disabled');
-
-    const isNonEditable = isReadonly !== null || isDisabled !== null;
+Then('the Email address is non-editable field', async () => {
+    const isNonEditable = await ProfilePage.isEmailNonEditableField();
     expect(isNonEditable).toBe(true);
 });
 

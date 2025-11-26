@@ -41,6 +41,7 @@ When('the user enters an invalid email address or password', async () => {
 });
 
 Then('the system should display an error message Invalid email or password', async () => {
-    const errorMessage = await LoginPage.isErrorMessageVisible();
+    await LoginPage.isErrorMessageVisible();
+    const errorMessage = await LoginPage.getErrorMessage();
     await expect(errorMessage).toContain('Invalid email or password');
 });

@@ -33,11 +33,15 @@ class LoginPage extends BasePage {
   }
 
   async isLoginFormVisible() {
-    return await this.loginTitle.isDisplayed();
+    await this.waitForVisible(this.loginTitle);
+    //return await this.loginTitle.isDisplayed();
   }
 
   async isErrorMessageVisible() {
     await this.waitForVisible(this.alertErrorInvalidData);
+  }
+
+  async getErrorMessage() {
     return await this.getText(this.alertErrorInvalidData);
   }
 

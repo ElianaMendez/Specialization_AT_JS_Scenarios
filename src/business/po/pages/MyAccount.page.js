@@ -1,17 +1,17 @@
 import BasePage from "../../../core/base/base.page";
 
 class MyAccountPage extends BasePage {
-    static PATH = '/account';
+/*     static PATH = '/account'; */
 
     get btnProfile() { return $('a[routerlink="profile"]') }
     get iconHomePage() { return $('a[class="nav-link active"]') }
     get navbarBrand() { return $('a[class="navbar-brand"]') }
     get navMenu() { return $('[data-test="nav-menu"]') }
 
-    async open() {
+/*     async open() {
         await super.open(MyAccountPage.PATH);
     }
-
+ */
     async waitForAccountPageLoad() {
         await this.waitForPageLoad(this.navMenu, 'account');
     }
@@ -41,7 +41,7 @@ class MyAccountPage extends BasePage {
         }
     }
 
-    async goToProfile() {
+    async goToProfilePage() {
         await this.click(this.btnProfile);
     }
 }
