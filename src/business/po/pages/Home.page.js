@@ -11,12 +11,20 @@ class HomePage extends BasePage {
         await super.open(HomePage.PATH);
     }
 
+    async waitForHomePageLoad() {
+        await this.waitForPageLoad(this.homeProduct, '');
+    }
+
     async clickSignInLink() {
         await this.click(this.signInLink);
     }
 
     async isSignInLinkVisible() {
         return this.waitForVisible(this.signInLink);
+    }
+
+    async clickHomeProduct() {
+        await this.click(this.homeProduct);
     }
 
 }

@@ -8,6 +8,18 @@ class ProductDetailsPage extends BasePage {
     get alerProductAdded() { return $('//div[@role="alert"]') }
     get cartIcon() { return $('//*[@data-test="cart-quantity"]') }
 
+    async waitForProductDetailsPageLoad() {
+        await this.waitForPageLoad(this.btnAddtoCart, 'product');
+    }
+
+    async isDetailsOfProductVisible() {
+        await Promise.all([
+            this.waitForVisible(this.productName),
+            this.waitForVisible(this.productPrice),
+            this.waitForVisible(this.productDescription)
+        ]);
+    }
+
     async waitForAddedProductMessage() {
         await this.alerProductAdded.waitForDisplayed({ timeout: 10000 });
     }
