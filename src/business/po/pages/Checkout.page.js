@@ -133,15 +133,42 @@ class Checkout extends BasePage {
         await handler();
     }
 
-    // Helper method for complete checkout flow
-    async completeCheckout(addressData = null, paymentMethod, paymentData = null) {
-        await this.fillBillingAddress(addressData);
-        await this.click(this.btnProceedToCheckout2);
-        await this.selectPaymentMethod(paymentMethod);
-        await this.providePaymentInformation(paymentMethod, paymentData);
-        await this.click(this.btnProceedToCheckout3);
-        await this.confirmPurchase();
+    async waitForCheckoutPageLoad() {
+        await this.waitForPageLoad(this.btnProceedToCheckout, 'checkout');
     }
+
+    async clickProceedToCheckout() {
+        await this.click(this.btnProceedToCheckout);
+    }
+
+    async clickSecondProceedToCheckout() {
+        await this.click(this.btnProceedToCheckout2);
+    }
+
+    async clickThirdProceedToCheckout() {
+        await this.click(this.btnProceedToCheckout3);
+    }
+
+    async waitForMessageToProceedToCheckout() {
+        await this.waitForVisible(this.messageToProceedToCheckout);
+    }
+
+    async getTextMessageToProceedToCheckout() {
+        return await this.getText(this.messageToProceedToCheckout);
+    }
+
+    async clickToConfirmThePurchase() {
+        await this.click(this.btnFinish);
+    }
+
+    async waitForPaymentSuccessfulMessage() {
+        await this.waitForVisible(this.paymentSuccessfulMessage);
+    }
+
+    async getTextPaymentSuccessfulMessage() {
+        return await this.getText(this.paymentSuccessfulMessage);
+    }
+
 }
 
 export default new Checkout();

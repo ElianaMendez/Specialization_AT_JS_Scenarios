@@ -7,6 +7,6 @@ Feature: Cart Management on Practice Software Testing
   Scenario: User adds a product to the cart
     Given the user is on the Practice Software Testing home page
     When the user clicks on a product title or image
-    And clicks on the "Add to cart" button
+    And clicks on the Add to cart button
     Then the system should display a message Product added to shopping cart
     And the cart icon should show an updated item count

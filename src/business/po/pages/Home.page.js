@@ -5,6 +5,7 @@ class HomePage extends BasePage {
 
     get signInLink() { return $('[data-test="nav-sign-in"]') }
     get homeProduct() { return $('img.card-img-top') }
+    get cartIcon() { return $('//*[@data-test="cart-quantity"]') }
 
 
     async open() {
@@ -25,6 +26,10 @@ class HomePage extends BasePage {
 
     async clickHomeProduct() {
         await this.click(this.homeProduct);
+    }
+
+    async clickCartIcon() {
+        await this.click(this.cartIcon);
     }
 
 }

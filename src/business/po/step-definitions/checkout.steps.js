@@ -4,14 +4,16 @@ import ProductDetailsPage from '../pages/ProductDetails.page.js';
 import Checkout from '../pages/Checkout.page.js';
 import MyAccountPage from '../pages/MyAccount.page.js';
 import BasePage from '../../../core/base/base.page.js';
+import HomePage from '../pages/Home.page.js';
 
 Given('User opens a new browser tab', async () => {
-    const originalTab = await browser.getWindowHandle();
+    await Checkout.openNewBrowserTab(); 
+    /* const originalTab = await browser.getWindowHandle();
     await browser.newWindow('about:blank');
     const newTab = await browser.getWindowHandle();
     await browser.switchToWindow(originalTab);
     await browser.closeWindow();
-    await browser.switchToWindow(newTab);
+    await browser.switchToWindow(newTab); */
 });
 
 Given('the user go to the home page', async () => {
@@ -20,25 +22,31 @@ Given('the user go to the home page', async () => {
 
 Given('the user opens the cart to proceed the checkout', async () => {
     try {
-        await BasePage.click(ProductDetailsPage.cartIcon);
+        await HomePage.clickCartIcon();
+        //await BasePage.click(ProductDetailsPage.cartIcon);
     } catch {
-        await browser.navigateTo("https://practicesoftwaretesting.com/checkout");
+        await Checkout.open();
+        //await browser.navigateTo("https://practicesoftwaretesting.com/checkout");
     }
-    await BasePage.waitForPageLoad();
+    await Checkout.waitForCheckoutPageLoad();
 });
 
 Given('the user clicks on the Proceed to Checkout button', async () => {
-    await Base.click(Checkout.btnProceedToCheckout);
+    await Checkout.clickProceedToCheckout();
+    //await Base.click(Checkout.btnProceedToCheckout);
 });
 
 Given('the user should see a message to proceed to checkout', async () => {
-    await BasePage.waitForVisible(Checkout.messagetoProceedToCheckout);
-    const text = await BasePage.getText(Checkout.messagetoProceedToCheckout);
-    await expect(text).toContain('You can proceed to checkout');
+    await Checkout.waitForMessageToProceedToCheckout();
+    //await BasePage.waitForVisible(Checkout.messagetoProceedToCheckout);
+    const message = await Checkout.getTextMessageToProceedToCheckout();
+    //const text = await BasePage.getText(Checkout.messagetoProceedToCheckout);
+    await expect(message).toContain('You can proceed to checkout');
 });
 
 Given('the user clicks on the second Proceed to Checkout button', async () => {
-    await BasePage.click(Checkout.btnProceedToCheckout2);
+    await Checkout.clickSecondProceedToCheckout();
+    //await BasePage.click(Checkout.btnProceedToCheckout2);
 });
 
 Given('the user fills the Billing address', async () => {
@@ -46,7 +54,7 @@ Given('the user fills the Billing address', async () => {
 });
 
 Given('the user clicks on the third Proceed to Checkout button', async () => {
-    await BasePage.click(Checkout.btnProceedToCheckout3);
+    await Checkout.clickThirdProceedToCheckout();
 });
 
 
@@ -59,11 +67,12 @@ When('provides the required information for {string}', async (paymentMethod) => 
 });
 
 When('confirms the purchase', async () => {
-    await BasePage.click(Checkout.btnFinish);
+    await Checkout.clickToConfirmThePurchase();
 });
 
 Then('the system should display the message {string}', async (expectedMessage) => {
-    await BasePage.waitForVisible(Checkout.paymentSuccessfulMessage);
-    const text = await BasePage.getText(Checkout.paymentSuccessfulMessage);
+    await Checkout.waitForPaymentSuccessfulMessage();
+    //await BasePage.waitForVisible(Checkout.paymentSuccessfulMessage);
+    const text = await Checkout.getTextPaymentSuccessfulMessage();
     await expect(text).toContain(expectedMessage);
 });

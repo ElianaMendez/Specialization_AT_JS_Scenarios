@@ -34,7 +34,7 @@ class MyAccountPage extends BasePage {
 
     async goToTheHomePage() {
         try {
-            await this.iconHomePage.waitForClickable({ timeout: 10000 });
+            //await this.iconHomePage.waitForClickable({ timeout: 10000 });
             await this.click(this.iconHomePage);
         } catch {
             await this.click(this.navbarBrand);

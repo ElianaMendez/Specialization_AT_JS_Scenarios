@@ -22,10 +22,6 @@ export default class BrowserHelper {
     static async navigateTo(url) {
         await browser.url(url);
     }
-    //async waitForMessageToProceedToCheckout() {  apply the first method waitForVisible
-    //await this.messagetoProceedToCheckout.waitForDisplayed({ timeout: 10000 });
-    //}
-
 }
 
 

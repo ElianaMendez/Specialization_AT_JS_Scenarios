@@ -31,4 +31,5 @@ export default class BasePage {
     async getText(element) {
         return BrowserHelper.getText(element);
     }
+
 }
