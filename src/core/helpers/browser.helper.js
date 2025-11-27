@@ -1,6 +1,6 @@
 export default class BrowserHelper {
-    static async waitForVisible(element) {
-        return await element.waitForDisplayed({ timeout: 50000 });
+    static async waitForVisible(element, customTimeout = 50000) {
+        return await element.waitForDisplayed({ timeout: customTimeout });
     }
 
     static async click(element) {

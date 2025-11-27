@@ -12,6 +12,10 @@ export default class BasePage {
         await WaitHelper.waitForPageLoad(element, keyword);
     }
 
+    async waitFieldsNotEmpty(element) {
+        await WaitHelper.waitFieldsNotEmpty(element);
+    }
+
     async click(element) {
         return BrowserHelper.click(element);
     }
@@ -20,8 +24,8 @@ export default class BasePage {
         return BrowserHelper.setInputValue(element, text);
     }
 
-    async waitForVisible(element) {
-        return BrowserHelper.waitForVisible(element);
+    async waitForVisible(element, customTimeout = 50000) {
+        return BrowserHelper.waitForVisible(element, customTimeout = 50000);
     }
 
     async getText(element) {

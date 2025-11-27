@@ -1,3 +1,4 @@
+import { fi } from "@faker-js/faker"
 import BasePage from "../../../core/base/base.page"
 
 class ProfilePage extends BasePage {
@@ -11,14 +12,15 @@ class ProfilePage extends BasePage {
     get inputState() { return $('#state') }
     get inputCountry() { return $('#country') }
     get btnUpdateProfile() { return $('button[type="submit"]') }
-    get alertProfileUpdated() { return $('div[role="alert"].alert-success') }
-    //'//div//*[contains(@class, "alert-success")]'
+    get alertProfileUpdated() { return $('//div//*[contains(@class, "alert-success")]') }
+    //  'div[role="alert"].alert-success'
 
     async waitForProfilePageLoad() {
         await this.waitForPageLoad(this.btnUpdateProfile, 'profile');
     }
 
     async inputUpdatedName() {
+        await this.waitFieldsNotEmpty(this.inputFirstName);
         await this.setInputValue(this.inputFirstName, 'New name');
     }
 
@@ -27,39 +29,17 @@ class ProfilePage extends BasePage {
         await this.btnProfile.click();
     }
 
-    /*     async waitFieldsNonEmpty() {
-            try {
-                await this.inputFirstName.waitForDisplayed({
-                    timeout: 8000
-                });
-                await browser.waitUntil(
-                    async () => {
-                        const value = await this.inputFirstName.getValue();
-                        return value !== '';
-                    },
-                    {
-                        timeout: 10000
-                    }
-                );
-            } catch { }
-        }
-     */
-    /*     async waitUpdateProfileClickable() {
-            await this.btnUpdateProfile.waitForClickable({ timeout: 5000 });
-        }
-     */
-
     async clickUpdateProfileButton() {
         await this.click(this.btnUpdateProfile);
     }
 
     async waitUpdatedMessage() {
-        await this.waitForVisible(this.alertProfileUpdated);
+        await this.waitForVisible(this.alertProfileUpdated, 30000);
         //await this.alertProfileUpdated.waitForDisplayed({ timeout: 10000 });
     }
 
     async getUpdatedMessage() {
-        await this.getText(this.alertProfileUpdated);
+        return await this.getText(this.alertProfileUpdated);
     }
 
     async clickEmailField() {

@@ -19,7 +19,7 @@ When('the user clicks on the Sign in button', async () => {
 });
 
 When('clicks on the Register your account link', async () => {
-    await LoginPage.clickButtonRegisterAccount();
+    await LoginPage.clickRegisterAccountButton();
 });
 
 When('fills in all required fields in the registration form with valid data', async () => {

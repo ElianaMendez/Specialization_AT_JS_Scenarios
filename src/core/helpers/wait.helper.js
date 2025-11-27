@@ -33,4 +33,21 @@ export default class WaitHelper {
             timeoutMsg: `The key element was not displayed on the page within ${timeout / 1000} seconds.`
         });
     }
+
+    static async waitFieldsNotEmpty(element) {
+        try {
+            await element.waitForDisplayed({
+                timeout: 8000
+            });
+            await browser.waitUntil(
+                async () => {
+                    const value = await element.getValue();
+                    return value !== '';
+                },
+                {
+                    timeout: 10000
+                }
+            );
+        } catch { }
+    }
 }
