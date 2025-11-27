@@ -5,11 +5,15 @@ class ProductDetailsPage extends BasePage {
     get productPrice() { return $('span[aria-label="unit-price"]') }
     get productDescription() { return $('#description') }
     get btnAddtoCart() { return $('#btn-add-to-cart') }
-    get alerProductAdded() { return $('//div[@role="alert"]') }
+    get productAddedAlert() { return $('//div[@role="alert"]') }
     get cartIcon() { return $('//*[@data-test="cart-quantity"]') }
 
     async waitForProductDetailsPageLoad() {
         await this.waitForPageLoad(this.btnAddtoCart, 'product');
+    }
+
+    async clickAddToCartButton() {
+        await this.click(this.btnAddtoCart);
     }
 
     async isDetailsOfProductVisible() {
@@ -21,17 +25,24 @@ class ProductDetailsPage extends BasePage {
     }
 
     async waitForAddedProductMessage() {
-        await this.alerProductAdded.waitForDisplayed({ timeout: 10000 });
+        await this.waitForVisible(this.productAddedAlert);
+    }
+
+    async getTextProductAddedAlert() {
+        return await this.getText(this.productAddedAlert);
+    }
+
+    async waitForMessageDisappears() {
+        await this.productAddedAlert.waitForExist({ reverse: true, timeout: 10000 });
     }
 
     async waitForCartIconAppears() {
-        await this.cartIcon.waitForDisplayed({ timeout: 10000 });
+        await this.waitForVisible(this.cartIcon);
     }
 
     async getItemCount() {
-        return await this.cartIcon.getText();
+        return await this.getText(this.cartIcon);
     }
-
 }
 
 export default new ProductDetailsPage();

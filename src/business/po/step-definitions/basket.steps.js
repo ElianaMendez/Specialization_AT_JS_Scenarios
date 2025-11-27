@@ -4,14 +4,14 @@ import ProductDetailsPage from '../pages/ProductDetails.page';
 
 When('clicks on the "Add to cart" button', async () => {
     await ProductDetailsPage.waitForProductDetailsPageLoad();
-    await ProductDetailsPage.btnAddtoCart.click();
+    await ProductDetailsPage.clickAddToCartButton();
 });
 
 Then('the system should display a message Product added to shopping cart', async () => {
     await ProductDetailsPage.waitForAddedProductMessage();
-    const productAlertMessage = await ProductDetailsPage.alerProductAdded.getText();
+    const productAlertMessage = await ProductDetailsPage.getTextProductAddedAlert();
     await expect(productAlertMessage).toContain("Product added to shopping cart.");
-    await ProductDetailsPage.alerProductAdded.waitForExist({ reverse: true, timeout: 10000 });
+    await ProductDetailsPage.waitForMessageDisappears();
 });
 
 Then('the cart icon should show an updated item count', async () => {
