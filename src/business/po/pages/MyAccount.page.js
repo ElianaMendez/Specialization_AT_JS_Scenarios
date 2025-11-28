@@ -1,24 +1,24 @@
 import BasePage from "../../../core/base/base.page";
 
 class MyAccountPage extends BasePage {
-  
-    get btnProfile() { return $('a[routerlink="profile"]') }
+
+    get buttonProfile() { return $('a[routerlink="profile"]') }
     get iconHomePage() { return $('a[class="nav-link active"]') }
-    get navbarBrand() { return $('a[class="navbar-brand"]') }
-    get navMenu() { return $('[data-test="nav-menu"]') }
+    get homeLink() { return $('a[class="navbar-brand"]') }
+    get userMenu() { return $('[data-test="nav-menu"]') }
 
     async waitForAccountPageLoad() {
-        await this.waitForPageLoad(this.navMenu, 'account');
+        await this.waitForPageLoad(this.userMenu, 'account');
     }
 
     async getUserNamefromMenu() {
         const maxAttempts = 3;
 
         for (let i = 0; i < maxAttempts; i++) {
-            let name = await this.navMenu.getText();
+            let name = await this.userMenu.getText();
             if (name) return name;
 
-            name = await this.navMenu.getHTML(false);
+            name = await this.userMenu.getHTML(false);
             if (name) return name;
 
             await browser.pause(500);
@@ -31,12 +31,12 @@ class MyAccountPage extends BasePage {
         try {
             await this.click(this.iconHomePage);
         } catch {
-            await this.click(this.navbarBrand);
+            await this.click(this.homeLink);
         }
     }
 
     async goToProfilePage() {
-        await this.click(this.btnProfile);
+        await this.click(this.buttonProfile);
     }
 }
 

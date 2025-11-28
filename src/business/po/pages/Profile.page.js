@@ -1,4 +1,3 @@
-import { fi } from "@faker-js/faker"
 import BasePage from "../../../core/base/base.page"
 
 class ProfilePage extends BasePage {
@@ -12,12 +11,12 @@ class ProfilePage extends BasePage {
     get inputCity() { return $('#city') }
     get inputState() { return $('#state') }
     get inputCountry() { return $('#country') }
-    get btnUpdateProfile() { return $('button[type="submit"]') }
+    get buttonUpdateProfile() { return $('button[type="submit"]') }
     get alertProfileUpdated() { return $('//div//*[contains(@class, "alert-success")]') }
 
 
     async waitForProfilePageLoad() {
-        await this.waitForPageLoad(this.btnUpdateProfile, 'profile');
+        await this.waitForPageLoad(this.buttonUpdateProfile, 'profile');
     }
 
     async inputUpdatedName() {
@@ -26,7 +25,7 @@ class ProfilePage extends BasePage {
     }
 
     async clickUpdateProfileButton() {
-        await this.click(this.btnUpdateProfile);
+        await this.click(this.buttonUpdateProfile);
     }
 
     async waitUpdatedMessage() {

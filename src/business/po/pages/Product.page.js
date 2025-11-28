@@ -4,20 +4,20 @@ class ProductPage extends BasePage {
     get productName() { return $('h1[data-test="product-name"]') }
     get productPrice() { return $('span[aria-label="unit-price"]') }
     get productDescription() { return $('#description') }
-    get btnAddtoCart() { return $('#btn-add-to-cart') }
+    get buttonAddtoCart() { return $('#btn-add-to-cart') }
     get productAddedAlert() { return $('//div[@role="alert"]') }
     get cartIcon() { return $('//*[@data-test="cart-quantity"]') }
 
     async waitForProductPageLoad() {
         try {
-            await this.waitForPageLoad(this.btnAddtoCart, 'product', 60000);
+            await this.waitForPageLoad(this.buttonAddtoCart, 'product', 60000);
         } catch {
 
         }
     }
 
     async clickAddToCartButton() {
-        await this.click(this.btnAddtoCart);
+        await this.click(this.buttonAddtoCart);
     }
 
     async isDetailsOfProductVisible() {

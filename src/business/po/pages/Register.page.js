@@ -12,7 +12,7 @@ class RegisterPage extends BasePage {
   get inputPhone() { return $('#phone'); }
   get inputEmail() { return $('#email'); }
   get inputPassword() { return $('#password'); }
-  get btnRegister() { return $('//button[@class="btnSubmit mb-3"]'); }
+  get buttonRegister() { return $('//button[@class="btnSubmit mb-3"]'); }
 
   async fillRegistrationForm({
     firstName, lastName, dateOfBirth, street, postalCode, city, state,
@@ -36,8 +36,8 @@ class RegisterPage extends BasePage {
   }
 
   async submit() {
-    await this.btnRegister.waitForClickable({ timeout: 5000 });
-    await this.click(this.btnRegister);
+    await this.buttonRegister.waitForClickable({ timeout: 5000 });
+    await this.click(this.buttonRegister);
 
   }
 }

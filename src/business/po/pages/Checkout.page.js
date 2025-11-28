@@ -4,10 +4,10 @@ class CheckoutPage extends BasePage {
     static PATH = '/checkout';
 
     // Selectors grouped by section
-    get btnProceedToCheckout() { return $('button[class="btn btn-success"]') }
-    get btnProceedToCheckout2() { return $('button[data-test="proceed-2"]') }
-    get btnProceedToCheckout3() { return $('button[data-test="proceed-3"]') }
-    get btnFinish() { return $('button[data-test="finish"]') }
+    get proceedToCheckoutButton() { return $('button[class="btn btn-success"]') }
+    get proceedStepTwoButton() { return $('button[data-test="proceed-2"]') }
+    get proceedStepThreeButton() { return $('button[data-test="proceed-3"]') }
+    get finishPurchaseButton() { return $('button[data-test="finish"]') }
 
     get messageToProceedToCheckout() { return $('p.ng-star-inserted') }
     get paymentSuccessfulMessage() { return $('div[data-test="payment-success-message"]') }
@@ -134,19 +134,19 @@ class CheckoutPage extends BasePage {
     }
 
     async waitForCheckoutPageLoad() {
-        await this.waitForPageLoad(this.btnProceedToCheckout, 'checkout');
+        await this.waitForPageLoad(this.proceedToCheckoutButton, 'checkout');
     }
 
     async clickProceedToCheckout() {
-        await this.click(this.btnProceedToCheckout);
+        await this.click(this.proceedToCheckoutButton);
     }
 
     async clickSecondProceedToCheckout() {
-        await this.click(this.btnProceedToCheckout2);
+        await this.click(this.proceedStepTwoButton);
     }
 
     async clickThirdProceedToCheckout() {
-        await this.click(this.btnProceedToCheckout3);
+        await this.click(this.proceedStepThreeButton);
     }
 
     async waitForMessageToProceedToCheckout() {
@@ -158,7 +158,7 @@ class CheckoutPage extends BasePage {
     }
 
     async clickToConfirmThePurchase() {
-        await this.click(this.btnFinish);
+        await this.click(this.finishPurchaseButton);
     }
 
     async waitForPaymentSuccessfulMessage() {
