@@ -1,6 +1,6 @@
 import { When, Then } from '@wdio/cucumber-framework';
 import HomePage from '../pages/Home.page.js';
-import ProductDetailsPage from '../pages/ProductDetails.page'
+import ProductPage from '../pages/Product.page.js'
 
 
 When('the user clicks on a product title or image', async () => {
@@ -9,10 +9,10 @@ When('the user clicks on a product title or image', async () => {
 });
 
 Then('the system should display the product details page', async () => {
-    await ProductDetailsPage.waitForProductDetailsPageLoad();
+    await ProductPage.waitForProductPageLoad();
 });
 
 Then('the page should show the product name, price, and description', async () => {
-    await ProductDetailsPage.isDetailsOfProductVisible();
+    await ProductPage.isDetailsOfProductVisible();
 });
 

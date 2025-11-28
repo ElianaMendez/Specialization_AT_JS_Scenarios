@@ -1,6 +1,6 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
-import Checkout from '../pages/Checkout.page.js';
+import CheckoutPage from '../pages/Checkout.page.js';
 import MyAccountPage from '../pages/MyAccount.page.js';
 import HomePage from '../pages/Home.page.js';
 
@@ -13,47 +13,47 @@ Given('the user opens the cart to proceed the checkout', async () => {
     try {
         await HomePage.clickCartIcon();
     } catch {
-        await Checkout.open();
+        await CheckoutPage.open();
     }
-    await Checkout.waitForCheckoutPageLoad();
+    await CheckoutPage.waitForCheckoutPageLoad();
 });
 
 Given('the user clicks on the Proceed to Checkout button', async () => {
-    await Checkout.clickProceedToCheckout();
+    await CheckoutPage.clickProceedToCheckout();
 });
 
 Given('the user should see a message to proceed to checkout', async () => {
-    await Checkout.waitForMessageToProceedToCheckout();
-    const message = await Checkout.getTextMessageToProceedToCheckout();
+    await CheckoutPage.waitForMessageToProceedToCheckout();
+    const message = await CheckoutPage.getTextMessageToProceedToCheckout();
     await expect(message).toContain('You can proceed to checkout');
 });
 
 Given('the user clicks on the second Proceed to Checkout button', async () => {
-    await Checkout.clickSecondProceedToCheckout();
+    await CheckoutPage.clickSecondProceedToCheckout();
 });
 
 Given('the user fills the Billing address', async () => {
-    await Checkout.fillBillingAddress();
+    await CheckoutPage.fillBillingAddress();
 });
 
 Given('the user clicks on the third Proceed to Checkout button', async () => {
-    await Checkout.clickThirdProceedToCheckout();
+    await CheckoutPage.clickThirdProceedToCheckout();
 });
 
 When('selects {string} as the payment method', async (paymentMethod) => {
-    await Checkout.selectPaymentMethod(paymentMethod);
+    await CheckoutPage.selectPaymentMethod(paymentMethod);
 });
 
 When('provides the required information for {string}', async (paymentMethod) => {
-    await Checkout.providePaymentInformation(paymentMethod);
+    await CheckoutPage.providePaymentInformation(paymentMethod);
 });
 
 When('confirms the purchase', async () => {
-    await Checkout.clickToConfirmThePurchase();
+    await CheckoutPage.clickToConfirmThePurchase();
 });
 
 Then('the system should display the message {string}', async (expectedMessage) => {
-    await Checkout.waitForPaymentSuccessfulMessage();
-    const text = await Checkout.getTextPaymentSuccessfulMessage();
+    await CheckoutPage.waitForPaymentSuccessfulMessage();
+    const text = await CheckoutPage.getTextPaymentSuccessfulMessage();
     await expect(text).toContain(expectedMessage);
 });

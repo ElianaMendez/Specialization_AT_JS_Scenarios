@@ -1,6 +1,6 @@
 import BasePage from "../../../core/base/base.page"
 
-class ProductDetailsPage extends BasePage {
+class ProductPage extends BasePage {
     get productName() { return $('h1[data-test="product-name"]') }
     get productPrice() { return $('span[aria-label="unit-price"]') }
     get productDescription() { return $('#description') }
@@ -8,7 +8,7 @@ class ProductDetailsPage extends BasePage {
     get productAddedAlert() { return $('//div[@role="alert"]') }
     get cartIcon() { return $('//*[@data-test="cart-quantity"]') }
 
-    async waitForProductDetailsPageLoad() {
+    async waitForProductPageLoad() {
         try {
             await this.waitForPageLoad(this.btnAddtoCart, 'product', 60000);
         } catch {
@@ -49,4 +49,4 @@ class ProductDetailsPage extends BasePage {
     }
 }
 
-export default new ProductDetailsPage();
+export default new ProductPage();

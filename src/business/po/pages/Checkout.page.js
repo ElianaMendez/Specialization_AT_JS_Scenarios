@@ -1,6 +1,6 @@
 import BasePage from "../../../core/base/base.page"
 
-class Checkout extends BasePage {
+class CheckoutPage extends BasePage {
     static PATH = '/checkout';
 
     // Selectors grouped by section
@@ -41,7 +41,7 @@ class Checkout extends BasePage {
     get inputValidationCode() { return $('#validation_code') }
 
     async open() {
-        await super.open(Checkout.PATH);
+        await super.open(CheckoutPage.PATH);
     }
 
     async fillBillingAddress(addressData = null) {
@@ -171,4 +171,4 @@ class Checkout extends BasePage {
 
 }
 
-export default new Checkout();
+export default new CheckoutPage();
