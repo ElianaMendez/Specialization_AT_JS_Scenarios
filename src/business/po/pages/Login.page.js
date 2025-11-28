@@ -2,6 +2,7 @@ import axios from 'axios';
 import BasePage from '../../../core/base/base.page.js';
 
 class LoginPage extends BasePage {
+  
   get loginTitle() { return $('//h3[text()="Login"]') }
   get inputEmail() { return $('#email'); }
   get inputPassword() { return $('#password'); }

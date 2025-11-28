@@ -2,6 +2,7 @@ import { fi } from "@faker-js/faker"
 import BasePage from "../../../core/base/base.page"
 
 class ProfilePage extends BasePage {
+
     get inputFirstName() { return $('#first_name') }
     get inputLastName() { return $('#last_name') }
     get inputPhone() { return $('#phone') }
@@ -13,7 +14,7 @@ class ProfilePage extends BasePage {
     get inputCountry() { return $('#country') }
     get btnUpdateProfile() { return $('button[type="submit"]') }
     get alertProfileUpdated() { return $('//div//*[contains(@class, "alert-success")]') }
-    //  'div[role="alert"].alert-success'
+
 
     async waitForProfilePageLoad() {
         await this.waitForPageLoad(this.btnUpdateProfile, 'profile');
@@ -24,10 +25,10 @@ class ProfilePage extends BasePage {
         await this.setInputValue(this.inputFirstName, 'New name');
     }
 
-    async updateProfileData() {
+/*     async updateProfileData() {
         await this.inputFirstName.setValue('Eliana');
         await this.btnProfile.click();
-    }
+    } */
 
     async clickUpdateProfileButton() {
         await this.click(this.btnUpdateProfile);
@@ -35,7 +36,6 @@ class ProfilePage extends BasePage {
 
     async waitUpdatedMessage() {
         await this.waitForVisible(this.alertProfileUpdated, 30000);
-        //await this.alertProfileUpdated.waitForDisplayed({ timeout: 10000 });
     }
 
     async getUpdatedMessage() {

@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { browser, expect } from '@wdio/globals';
+import { expect } from '@wdio/globals';
 import LoginPage from '../pages/Login.page.js';
 import MyAccountPage from '../pages/MyAccount.page.js';
 import DataGenerator from '../../../test/data/DataGenerator.js';

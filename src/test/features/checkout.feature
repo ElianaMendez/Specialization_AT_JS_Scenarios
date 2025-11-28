@@ -4,7 +4,7 @@ Feature: Checkout on Practice Software Testing
     So that I can successfully order items using different payment methods
 
     Background: Logged-in user adds items to cart
-        And the user is on the login page of the Practice Software Testing site
+        Given the user is on the login page of the Practice Software Testing site
         And a newly registered user exists with unique valid credentials
         When the user enters a valid email address and password
         And clicks on the Login button

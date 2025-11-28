@@ -35,5 +35,4 @@ export default class BasePage {
     async waitUntilHomeProdutsAppears() {
         await WaitHelper.waitUntilHomeProdutsAppears();
     }
-
 }
