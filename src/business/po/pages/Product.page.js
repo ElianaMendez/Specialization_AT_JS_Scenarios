@@ -29,7 +29,7 @@ class ProductPage extends BasePage {
     }
 
     async waitForAddedProductMessage() {
-        await this.waitForVisible(this.productAddedAlert);
+        await this.waitForVisible(this.productAddedAlert, 60000);
     }
 
     async getTextProductAddedAlert() {

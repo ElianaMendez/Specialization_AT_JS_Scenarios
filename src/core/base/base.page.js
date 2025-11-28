@@ -25,7 +25,7 @@ export default class BasePage {
     }
 
     async waitForVisible(element, customTimeout = 50000) {
-        return BrowserHelper.waitForVisible(element, customTimeout = 50000);
+        return BrowserHelper.waitForVisible(element, customTimeout);
     }
 
     async getText(element) {
