@@ -67,6 +67,19 @@ export const config = {
     {
         browserName: 'firefox',
         'moz:firefoxOptions': { args: ['-headless'] },
+    },
+    {
+        browserName: 'MicrosoftEdge',
+        'ms:edgeOptions': {
+            args: [
+                '--headless=new',
+                '--window-size=1920,1080',
+                '--disable-gpu',
+                '--no-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-blink-features=AutomationControlled'
+            ]
+        }
     }
     ],
 

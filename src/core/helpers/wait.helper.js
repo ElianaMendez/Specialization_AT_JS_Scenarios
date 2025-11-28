@@ -50,4 +50,17 @@ export default class WaitHelper {
             );
         } catch { }
     }
+
+    static async waitUntilHomeProdutsAppears() {
+        await browser.waitUntil(async () => {
+            const products = await $$('img.card-img-top');
+            return products.length > 0;
+        }, {
+            timeout: 10000,
+            timeoutMsg: 'Home page: No products found'
+        });
+
+        const products = await $$('img.card-img-top');
+        await products[0].waitForDisplayed({ timeout: 10000 });
+    }
 }

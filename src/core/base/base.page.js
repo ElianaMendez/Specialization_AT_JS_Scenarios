@@ -32,4 +32,8 @@ export default class BasePage {
         return BrowserHelper.getText(element);
     }
 
+    async waitUntilHomeProdutsAppears() {
+        await WaitHelper.waitUntilHomeProdutsAppears();
+    }
+
 }

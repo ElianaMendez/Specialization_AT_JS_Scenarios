@@ -4,7 +4,8 @@ class HomePage extends BasePage {
     static PATH = '';
 
     get signInLink() { return $('[data-test="nav-sign-in"]') }
-    get homeProduct() { return $('img.card-img-top') }
+    get homeProducts() { return $$('img.card-img-top') }
+    get homeImage() { return $('img.img-fluid') }
     get cartIcon() { return $('//*[@data-test="cart-quantity"]') }
 
 
@@ -13,7 +14,7 @@ class HomePage extends BasePage {
     }
 
     async waitForHomePageLoad() {
-        await this.waitForPageLoad(this.homeProduct, '');
+        await this.waitForPageLoad(this.homeImage, '');
     }
 
     async clickSignInLink() {
@@ -25,7 +26,11 @@ class HomePage extends BasePage {
     }
 
     async clickHomeProduct() {
-        await this.click(this.homeProduct);
+        await this.waitUntilHomeProdutsAppears();
+
+        const product = (await $$('img.card-img-top'))[0];
+        await product.scrollIntoView();
+        await this.click(product);
     }
 
     async clickCartIcon() {
