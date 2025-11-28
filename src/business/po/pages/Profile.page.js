@@ -25,11 +25,6 @@ class ProfilePage extends BasePage {
         await this.setInputValue(this.inputFirstName, 'New name');
     }
 
-/*     async updateProfileData() {
-        await this.inputFirstName.setValue('Eliana');
-        await this.btnProfile.click();
-    } */
-
     async clickUpdateProfileButton() {
         await this.click(this.btnUpdateProfile);
     }
@@ -49,11 +44,9 @@ class ProfilePage extends BasePage {
     async isEmailNonEditableField() {
         const emailField = await this.inputEmail;
         const isReadonly = await emailField.getAttribute('readonly');
-        const isEnabled = await emailField.getAttribute('disabled');
-        const isDisabled = !isEnabled;
+        const isDisabled = await emailField.getAttribute('disabled');
 
-        const isNonEditable = isReadonly !== null || isDisabled !== null;
-        return isNonEditable;
+        return isReadonly !== null || isDisabled !== null;
     }
 }
 
