@@ -6,6 +6,12 @@ export default class WaitHelper {
      * @param {number} timeout - The maximum time to wait for all conditions (in ms).
      */
     static async waitForPageLoad(element, keyword, timeout = 50000) {
+        if (keyword == 'account') {
+            let url = await browser.getUrl();
+            while (!url.includes('account')) {
+                url = await browser.getUrl();
+            }
+        }
 
         await browser.waitUntil(
             async () => {
