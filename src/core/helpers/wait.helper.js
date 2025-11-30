@@ -5,7 +5,7 @@ export default class WaitHelper {
      * @param {string} keyword - The partial string expected in the browser's URL.
      * @param {number} timeout - The maximum time to wait for all conditions (in ms).
      */
-    static async waitForPageLoad(element, keyword, timeout = 50000) {
+    static async waitForPageLoad(element, keyword, timeout = 60000) {
         if (keyword == 'account') {
             let url = await browser.getUrl();
             while (!url.includes('account')) {

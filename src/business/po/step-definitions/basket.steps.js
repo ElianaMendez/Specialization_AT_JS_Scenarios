@@ -8,15 +8,15 @@ When('clicks on the Add to cart button', async () => {
 });
 
 Then('the system should display a message Product added to shopping cart', async () => {
-    await ProductPage.waitForAddedProductMessage();
-    const productAlertMessage = await ProductPage.getTextProductAddedAlert();
+    await ProductPage.waitForAddedToCartMessage();
+    const productAlertMessage = await ProductPage.getAddedToCartAlertText();
     await expect(productAlertMessage).toContain("Product added to shopping cart.");
-    await ProductPage.waitForMessageDisappears();
+    await ProductPage.waitForAlertMessageToDisappear();
 });
 
 Then('the cart icon should show an updated item count', async () => {
-    await ProductPage.waitForCartIconAppears();
-    const cartIconText = await ProductPage.getItemCount();
+    await ProductPage.waitForCartQuantityIconVisible();
+    const cartIconText = await ProductPage.getCartItemCount();
     await expect(cartIconText).toContain('1');
 });
 

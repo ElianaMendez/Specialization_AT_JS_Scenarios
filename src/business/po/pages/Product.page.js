@@ -1,51 +1,50 @@
-import BasePage from "../../../core/base/base.page"
+import BasePage from "../../../core/base/base.page";
 
 class ProductPage extends BasePage {
-    get productName() { return $('h1[data-test="product-name"]') }
-    get productPrice() { return $('span[aria-label="unit-price"]') }
-    get productDescription() { return $('#description') }
-    get buttonAddtoCart() { return $('#btn-add-to-cart') }
-    get productAddedAlert() { return $('//div[@role="alert"]') }
-    get cartIcon() { return $('//*[@data-test="cart-quantity"]') }
+
+    get productNameLabel() { return $('h1[data-test="product-name"]') }
+    get productPriceLabel() { return $('span[aria-label="unit-price"]') }
+    get productDescriptionText() { return $('#description') }
+
+    get addToCartButton() { return $('#btn-add-to-cart') }
+    get productAddedAlertMessage() { return $('//div[@role="alert"]') }
+    get cartQuantityIcon() { return $('//*[@data-test="cart-quantity"]') }
+
 
     async waitForProductPageLoad() {
-        try {
-            await this.waitForPageLoad(this.buttonAddtoCart, 'product', 60000);
-        } catch {
-
-        }
+        await this.waitForPageLoad(this.addToCartButton, 'product', 60000);
     }
 
     async clickAddToCartButton() {
-        await this.click(this.buttonAddtoCart);
+        await this.click(this.addToCartButton);
     }
 
-    async isDetailsOfProductVisible() {
+    async waitForProductDetailsVisible() {
         await Promise.all([
-            this.waitForVisible(this.productName),
-            this.waitForVisible(this.productPrice),
-            this.waitForVisible(this.productDescription)
+            this.waitForVisible(this.productNameLabel),
+            this.waitForVisible(this.productPriceLabel),
+            this.waitForVisible(this.productDescriptionText)
         ]);
     }
 
-    async waitForAddedProductMessage() {
-        await this.waitForVisible(this.productAddedAlert, 60000);
+    async waitForAddedToCartMessage() {
+        await this.waitForVisible(this.productAddedAlertMessage, 60000);
     }
 
-    async getTextProductAddedAlert() {
-        return await this.getText(this.productAddedAlert);
+    async getAddedToCartAlertText() {
+        return await this.getText(this.productAddedAlertMessage);
     }
 
-    async waitForMessageDisappears() {
-        await this.productAddedAlert.waitForExist({ reverse: true, timeout: 10000 });
+    async waitForAlertMessageToDisappear() {
+        await this.productAddedAlertMessage.waitForExist({ reverse: true, timeout: 10000 });
     }
 
-    async waitForCartIconAppears() {
-        await this.waitForVisible(this.cartIcon);
+    async waitForCartQuantityIconVisible() {
+        await this.waitForVisible(this.cartQuantityIcon);
     }
 
-    async getItemCount() {
-        return await this.getText(this.cartIcon);
+    async getCartItemCount() {
+        return await this.getText(this.cartQuantityIcon);
     }
 }
 

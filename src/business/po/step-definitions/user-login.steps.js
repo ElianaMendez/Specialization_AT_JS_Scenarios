@@ -30,7 +30,7 @@ Then('the user should be redirected to the My account page', async () => {
 
 Then("the user's name should be displayed in the header", async function () {
     const expectedName = this.userData.firstName + ' ' + this.userData.lastName;
-    const userNameElementText = await MyAccountPage.getUserNamefromMenu();
+    const userNameElementText = await MyAccountPage.getUserNameFromMenu();
     await expect(userNameElementText).toContain(expectedName);
 });
 

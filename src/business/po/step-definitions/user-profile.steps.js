@@ -10,7 +10,7 @@ Given('the user is on the Profile section', async () => {
 });
 
 Given('the user updates a field that is different from Email address', async () => {
-    await ProfilePage.inputUpdatedName();
+    await ProfilePage.updateFirstName();
 });
 
 When('the user clicks on the Update Profile button', async () => {

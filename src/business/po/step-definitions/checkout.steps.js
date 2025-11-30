@@ -6,7 +6,7 @@ import HomePage from '../pages/Home.page.js';
 
 
 Given('the user go to the home page', async () => {
-    await MyAccountPage.goToTheHomePage();
+    await MyAccountPage.goToHomePage();
 });
 
 Given('the user opens the cart to proceed the checkout', async () => {

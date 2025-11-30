@@ -2,46 +2,46 @@ import BasePage from "../../../core/base/base.page"
 
 class ProfilePage extends BasePage {
 
-    get inputFirstName() { return $('#first_name') }
-    get inputLastName() { return $('#last_name') }
-    get inputPhone() { return $('#phone') }
-    get inputEmail() { return $('#email') }
-    get inputStreet() { return $('#street') }
-    get inputPostalCode() { return $('#postal_code') }
-    get inputCity() { return $('#city') }
-    get inputState() { return $('#state') }
-    get inputCountry() { return $('#country') }
-    get buttonUpdateProfile() { return $('button[type="submit"]') }
-    get alertProfileUpdated() { return $('//div//*[contains(@class, "alert-success")]') }
+    get firstNameInput() { return $('#first_name') }
+    get lastNameInput() { return $('#last_name') }
+    get phoneInput() { return $('#phone') }
+    get emailInput() { return $('#email') }
+    get streetInput() { return $('#street') }
+    get postalCodeInput() { return $('#postal_code') }
+    get cityInput() { return $('#city') }
+    get stateInput() { return $('#state') }
+    get countryInput() { return $('#country') }
+    get updateProfileButton() { return $('button[type="submit"]') }
+    get profileUpdatedAlert() { return $('//div//*[contains(@class, "alert-success")]') }
 
 
     async waitForProfilePageLoad() {
-        await this.waitForPageLoad(this.buttonUpdateProfile, 'profile');
+        await this.waitForPageLoad(this.updateProfileButton, 'profile');
     }
 
-    async inputUpdatedName() {
-        await this.waitFieldsNotEmpty(this.inputFirstName);
-        await this.setInputValue(this.inputFirstName, 'New name');
+    async updateFirstName() {
+        await this.waitFieldsNotEmpty(this.firstNameInput);
+        await this.setInputValue(this.firstNameInput, 'New name');
     }
 
     async clickUpdateProfileButton() {
-        await this.click(this.buttonUpdateProfile);
+        await this.click(this.updateProfileButton);
     }
 
     async waitUpdatedMessage() {
-        await this.waitForVisible(this.alertProfileUpdated, 30000);
+        await this.waitForVisible(this.profileUpdatedAlert, 30000);
     }
 
     async getUpdatedMessage() {
-        return await this.getText(this.alertProfileUpdated);
+        return await this.getText(this.profileUpdatedAlert);
     }
 
     async clickEmailField() {
-        await this.click(this.inputEmail);
+        await this.click(this.emailInput);
     }
 
     async isEmailNonEditableField() {
-        const emailField = await this.inputEmail;
+        const emailField = await this.emailInput;
         const isReadonly = await emailField.getAttribute('readonly');
         const isDisabled = await emailField.getAttribute('disabled');
 
