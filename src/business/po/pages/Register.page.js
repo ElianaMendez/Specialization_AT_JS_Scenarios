@@ -1,44 +1,42 @@
 import BasePage from "../../../core/base/base.page";
 
 class RegisterPage extends BasePage {
-  get inputFirstName() { return $('#first_name'); }
-  get inputLastName() { return $('#last_name'); }
-  get inputDateofBirth() { return $('#dob'); }
-  get inputStreet() { return $('input[id="street"]'); }
-  get inputPostalCode() { return $('#postal_code') }
-  get inputCity() { return $('input[id="city"]'); }
-  get inputState() { return $('input[id="state"]'); }
-  get selectCountry() { return $('#country'); }
-  get inputPhone() { return $('#phone'); }
-  get inputEmail() { return $('#email'); }
-  get inputPassword() { return $('#password'); }
-  get buttonRegister() { return $('//button[@class="btnSubmit mb-3"]'); }
+  get firstNameInput() { return $('#first_name'); }
+  get lastNameInput() { return $('#last_name'); }
+  get dateofBirthInput() { return $('#dob'); }
+  get streetInput() { return $('input[id="street"]'); }
+  get postalCodeInput() { return $('#postal_code') }
+  get cityInput() { return $('input[id="city"]'); }
+  get stateInput() { return $('input[id="state"]'); }
+  get countryDropdown() { return $('#country'); }
+  get phoneInput() { return $('#phone'); }
+  get emailInput() { return $('#email'); }
+  get passwordInput() { return $('#password'); }
+  get registerButton() { return $('//button[@class="btnSubmit mb-3"]'); }
 
   async fillRegistrationForm({
     firstName, lastName, dateOfBirth, street, postalCode, city, state,
     country, phone, email, password
   }) {
-    await this.setInputValue(this.inputFirstName, firstName);
-    await this.setInputValue(this.inputLastName, lastName);
-    await this.setInputValue(this.inputDateofBirth, dateOfBirth);
-    await this.setInputValue(this.inputStreet, street);
-    await this.setInputValue(this.inputPostalCode, postalCode);
-    await this.setInputValue(this.inputCity, city);
-    await this.setInputValue(this.inputState, state);
+    await this.setInputValue(this.firstNameInput, firstName);
+    await this.setInputValue(this.lastNameInput, lastName);
+    await this.setInputValue(this.dateofBirthInput, dateOfBirth);
+    await this.setInputValue(this.streetInput, street);
+    await this.setInputValue(this.postalCodeInput, postalCode);
+    await this.setInputValue(this.cityInput, city);
+    await this.setInputValue(this.stateInput, state);
 
-    // Dropdown Country 
-    await this.selectCountry.waitForDisplayed();
-    await this.selectCountry.selectByVisibleText(country);
+    await this.countryDropdown.waitForDisplayed();
+    await this.countryDropdown.selectByVisibleText(country);
 
-    await this.setInputValue(this.inputPhone, phone);
-    await this.setInputValue(this.inputEmail, email);
-    await this.setInputValue(this.inputPassword, password);
+    await this.setInputValue(this.phoneInput, phone);
+    await this.setInputValue(this.emailInput, email);
+    await this.setInputValue(this.passwordInput, password);
   }
 
-  async submit() {
-    await this.buttonRegister.waitForClickable({ timeout: 5000 });
-    await this.click(this.buttonRegister);
-
+  async clickRegisterButton() {
+    await this.registerButton.waitForClickable({ timeout: 5000 });
+    await this.click(this.registerButton);
   }
 }
 

@@ -28,7 +28,7 @@ When('fills in all required fields in the registration form with valid data', as
 });
 
 When('clicks on the Register button', async () => {
-    await RegisterPage.submit();
+    await RegisterPage.clickRegisterButton();
     await LoginPage.waitForLoginPageLoad();
 });
 
