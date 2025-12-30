@@ -4,6 +4,7 @@ import LoginPage from '../pages/Login.page.js';
 import MyAccountPage from '../pages/MyAccount.page.js';
 import DataGenerator from '../../../test/data/DataGenerator.js';
 
+
 Given('the user is on the login page of the Practice Software Testing site', async () => {
     await LoginPage.open();
 });

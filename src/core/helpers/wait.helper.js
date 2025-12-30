@@ -36,7 +36,7 @@ export default class WaitHelper {
 
         await element.waitForDisplayed({
             timeout: timeout,
-            timeoutMsg: `The key element was not displayed on the page within ${timeout / 1000} seconds.`
+            timeoutMsg: `The key element was not displayed on the page within ${timeout / 2000} seconds.`
         });
     }
 

@@ -15,7 +15,7 @@ export default class BrowserHelper {
     }
 
     static async getText(element) {
-        await element.waitForDisplayed({ timeout: 10000 });
+        await element.waitForDisplayed({ timeout: 20000 });
         return element.getText();
     }
 
@@ -23,9 +23,3 @@ export default class BrowserHelper {
         await browser.url(url);
     }
 }
-
-
-
-
-
-

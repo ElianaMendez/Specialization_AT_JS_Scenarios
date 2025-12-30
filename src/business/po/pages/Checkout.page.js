@@ -1,5 +1,13 @@
 import BasePage from "../../../core/base/base.page"
 
+const PAYMENT_METHOD_VALUES = {
+    'Transferencia bancaria': 'bank-transfer',
+    'Contra reembolso': 'cash-on-delivery',
+    'Tarjeta de crédito': 'credit-card',
+    'Compra ahora, paga después': 'buy-now-pay-later',
+    'Tarjeta de regalo': 'gift-card'
+};
+
 class CheckoutPage extends BasePage {
     static PATH = '/checkout';
 
@@ -40,6 +48,7 @@ class CheckoutPage extends BasePage {
     get inputGiftCardNumber() { return $('#gift_card_number') }
     get inputValidationCode() { return $('#validation_code') }
 
+
     async open() {
         await super.open(CheckoutPage.PATH);
     }
@@ -71,27 +80,34 @@ class CheckoutPage extends BasePage {
     }
 
     async selectPaymentMethod(paymentMethod) {
-        await this.paymentMethodField.waitForDisplayed();
-        await this.paymentMethodField.selectByVisibleText(paymentMethod);
+        const valueToSelect = PAYMENT_METHOD_VALUES[paymentMethod];
+
+        if (!valueToSelect) {
+            throw new Error(`The payment method "${paymentMethod}" is not defined in the mapping.`);
+        }
+
+        await this.paymentMethodField.waitForClickable({ timeout: 5000 });
+        await this.click(this.paymentMethodField);
+        await this.paymentMethodField.selectByAttribute('value', valueToSelect);
     }
 
     async providePaymentInformation(paymentMethod, paymentData = null) {
         const defaultPaymentData = {
-            'Bank Transfer': {
+            'Transferencia bancaria': {
                 bankName: 'Banco XYZ',
                 accountName: 'Mi cuenta',
                 accountNumber: '125478963566961'
             },
-            'Credit Card': {
+            'Tarjeta de crédito': {
                 cardNumber: '4690-8765-2345-8976',
                 expirationDate: '07/2032',
                 cvv: '254',
                 cardHolder: 'ElianaM'
             },
-            'Buy Now Pay Later': {
-                installments: '3 Monthly Installments'
+            'Compra ahora, paga después': {
+                installments: '3 Cuotas mensuales'
             },
-            'Gift Card': {
+            'Tarjeta de regalo': {
                 giftCardNumber: '32145448633245',
                 validationCode: '1232'
             }
@@ -100,27 +116,27 @@ class CheckoutPage extends BasePage {
         const data = paymentData || defaultPaymentData[paymentMethod] || {};
 
         const paymentHandlers = {
-            'Bank Transfer': async () => {
+            'Transferencia bancaria': async () => {
                 await this.setInputValue(this.inputBankName, data.bankName || 'Banco XYZ');
                 await this.setInputValue(this.inputAccountName, data.accountName || 'Mi cuenta');
                 await this.setInputValue(this.inputAccountNumber, data.accountNumber || '125478963566961');
             },
-            'Credit Card': async () => {
+            'Tarjeta de crédito': async () => {
                 await this.setInputValue(this.inputCreditCardNumber, data.cardNumber || '4690-8765-2345-8976');
                 await this.setInputValue(this.inputExpirationDate, data.expirationDate || '07/2032');
                 await this.setInputValue(this.inputCvv, data.cvv || '254');
                 await this.setInputValue(this.inputCardHolderName, data.cardHolder || 'ElianaM');
             },
-            'Buy Now Pay Later': async () => {
-                await this.selectMonthlyInstallments.selectByVisibleText(
-                    data.installments || '3 Monthly Installments'
-                );
+            'Compra ahora, paga después': async () => {
+                await this.selectMonthlyInstallments.waitForDisplayed();
+                await this.selectMonthlyInstallments.selectByAttribute('value', '3');
+                await this.click(this.paymentMethodField);
             },
-            'Gift Card': async () => {
+            'Tarjeta de regalo': async () => {
                 await this.setInputValue(this.inputGiftCardNumber, data.giftCardNumber || '32145448633245');
                 await this.setInputValue(this.inputValidationCode, data.validationCode || '1232');
             },
-            'Cash on Delivery': async () => {
+            'Contra reembolso': async () => {
                 // No input required
             }
         };
@@ -158,6 +174,9 @@ class CheckoutPage extends BasePage {
     }
 
     async clickToConfirmThePurchase() {
+        await this.finishPurchaseButton.waitForExist({ timeout: 10000 });
+        await this.finishPurchaseButton.scrollIntoView();
+        await this.finishPurchaseButton.waitForClickable({ timeout: 30000 });
         await this.click(this.finishPurchaseButton);
     }
 

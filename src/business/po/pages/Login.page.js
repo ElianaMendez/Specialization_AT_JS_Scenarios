@@ -5,7 +5,7 @@ class LoginPage extends BasePage {
 
   static PATH = 'auth/login';
 
-  get loginTitle() { return $('//h3[text()="Login"]') }
+  get loginTitle() { return $('app-login h3') }
   get emailInput() { return $('#email') }
   get passwordInput() { return $('#password') }
   get loginButton() { return $('input.btnSubmit') }

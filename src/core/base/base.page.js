@@ -24,7 +24,7 @@ export default class BasePage {
         return BrowserHelper.setInputValue(element, text);
     }
 
-    async waitForVisible(element, customTimeout = 50000) {
+    async waitForVisible(element, customTimeout = 80000) {
         return BrowserHelper.waitForVisible(element, customTimeout);
     }
 

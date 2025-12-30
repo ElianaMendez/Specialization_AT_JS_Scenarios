@@ -9,4 +9,3 @@ Feature: Product Details on Practice Software Testing
         When the user clicks on a product title or image
         Then the system should display the product details page
         And the page should show the product name, price, and description
-

@@ -28,10 +28,9 @@ Feature: Checkout on Practice Software Testing
         Then the system should display the message "Payment was successful"
 
         Examples:
-            | paymentMethod     |
-            | Bank Transfer     |
-            | Cash on Delivery  |
-            | Credit Card       |
-            | Buy Now Pay Later |
-            | Gift Card         |
-
+            | paymentMethod              |
+            | Transferencia bancaria     |
+            | Contra reembolso           |
+            | Tarjeta de crédito         |
+            | Compra ahora, paga después |
+            | Tarjeta de regalo          |

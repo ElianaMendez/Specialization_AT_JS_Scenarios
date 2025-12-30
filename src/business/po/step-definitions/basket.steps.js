@@ -2,6 +2,7 @@ import { When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
 import ProductPage from '../pages/Product.page';
 
+
 When('clicks on the Add to cart button', async () => {
     await ProductPage.waitForProductPageLoad();
     await ProductPage.clickAddToCartButton();
@@ -19,5 +20,3 @@ Then('the cart icon should show an updated item count', async () => {
     const cartIconText = await ProductPage.getCartItemCount();
     await expect(cartIconText).toContain('1');
 });
-
-

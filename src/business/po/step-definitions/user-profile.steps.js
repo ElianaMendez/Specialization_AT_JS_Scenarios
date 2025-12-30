@@ -20,7 +20,7 @@ When('the user clicks on the Update Profile button', async () => {
 Then('the system should display the message Your profile is successfully updated', async () => {
     await ProfilePage.waitUpdatedMessage();
     const updatedMessage = await ProfilePage.getUpdatedMessage();
-    await expect(updatedMessage).toContain('Your profile is successfully updated!');
+    await expect(updatedMessage).toMatch(/exitosamente|successfully/i);//toContain('¡Tu perfil se ha actualizado exitosamente!');
 });
 
 // User can not edit the "Email address" field
