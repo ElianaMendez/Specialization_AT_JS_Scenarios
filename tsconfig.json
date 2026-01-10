@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",         
+        "moduleResolution": "Bundler", 
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "types": [
+            "node", 
+            "expect-webdriverio",    
+            "@wdio/globals/types",
+            "@wdio/cucumber-framework"
+        ],
+        "strict": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": ["src/*"]
+        },
+        "outDir": "./dist",
+        "rootDir": "./src"
+    }
+}
