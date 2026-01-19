@@ -1,9 +1,10 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
-import CheckoutPage from '../pages/Checkout.page.js';
-import MyAccountPage from '../pages/MyAccount.page.js';
-import HomePage from '../pages/Home.page.js';
+import CheckoutPage from '../pages/Checkout.page';
+import MyAccountPage from '../pages/MyAccount.page';
+import HomePage from '../pages/Home.page';
 
+type PaymentMethod = 'Transferencia bancaria' | 'Contra reembolso' | 'Tarjeta de crédito' | 'Compra ahora, paga después' | 'Tarjeta de regalo';
 
 Given('the user go to the home page', async () => {
     await MyAccountPage.goToHomePage();
@@ -40,19 +41,19 @@ Given('the user clicks on the third Proceed to Checkout button', async () => {
     await CheckoutPage.clickThirdProceedToCheckout();
 });
 
-When('selects {string} as the payment method', async (paymentMethod) => {
-    await CheckoutPage.selectPaymentMethod(paymentMethod);
+When('selects {string} as the payment method', async (paymentMethod: string) => {
+    await CheckoutPage.selectPaymentMethod(paymentMethod as PaymentMethod);
 });
 
-When('provides the required information for {string}', async (paymentMethod) => {
-    await CheckoutPage.providePaymentInformation(paymentMethod);
+When('provides the required information for {string}', async (paymentMethod: string) => {
+    await CheckoutPage.providePaymentInformation(paymentMethod as PaymentMethod);
 });
 
 When('confirms the purchase', async () => {
     await CheckoutPage.clickToConfirmThePurchase();
 });
 
-Then('the system should display the message {string}', async (expectedMessage) => {
+Then('the system should display the message {string}', async (expectedMessage: string) => {
     await CheckoutPage.waitForPaymentSuccessfulMessage();
     const text = await CheckoutPage.getTextPaymentSuccessfulMessage();
     await expect(text).toContain(expectedMessage);

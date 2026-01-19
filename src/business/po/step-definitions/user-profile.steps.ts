@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
-import MyAccountPage from '../pages/MyAccount.page.js';
-import ProfilePage from '../pages/Profile.page.js';
+import MyAccountPage from '../pages/MyAccount.page';
+import ProfilePage from '../pages/Profile.page';
 
 Given('the user is on the Profile section', async () => {
     await MyAccountPage.waitForAccountPageLoad();
@@ -20,7 +20,7 @@ When('the user clicks on the Update Profile button', async () => {
 Then('the system should display the message Your profile is successfully updated', async () => {
     await ProfilePage.waitUpdatedMessage();
     const updatedMessage = await ProfilePage.getUpdatedMessage();
-    await expect(updatedMessage).toMatch(/exitosamente|successfully/i);//toContain('¡Tu perfil se ha actualizado exitosamente!');
+    await expect(updatedMessage).toMatch(/exitosamente|successfully/i);
 });
 
 // User can not edit the "Email address" field
@@ -32,7 +32,7 @@ Given('the user clicks to Email address field', async () => {
 
 Then('the Email address is non-editable field', async () => {
     const isNonEditable = await ProfilePage.isEmailNonEditableField();
-    expect(isNonEditable).toBe(true);
+    await expect(isNonEditable).toBe(true);
 });
 
 

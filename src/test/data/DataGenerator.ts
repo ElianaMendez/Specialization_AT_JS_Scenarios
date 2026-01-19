@@ -1,5 +1,24 @@
+export interface RegistrationData {
+    firstName: string;
+    lastName: string;
+    dateOfBirth: string;
+    street: string;
+    postalCode: string;
+    city: string;
+    state: string;
+    country: string;
+    phone: string;
+    email: string;
+    password: string;
+}
+
+export interface LoginCredentials {
+    email: string;
+    password: string;
+}
+
 class DataGenerator {
-    async generateUniqueUserData() {
+    generateUniqueUserData(): RegistrationData {
         const uniqueEmail = `test-api-${Date.now()}@test-qa.com`;
         return {
             firstName: 'John',
@@ -16,7 +35,7 @@ class DataGenerator {
         };
     }
 
-    generateInvalidDataToTest() {
+    generateInvalidDataToTest(): LoginCredentials {
         const invalidEmail = `test-api-${Date.now()}@test-qa.com`;
         const invalidPassword = `a${Date.now()}`;
 

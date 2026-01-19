@@ -1,8 +1,8 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
-import LoginPage from '../pages/Login.page.js';
-import MyAccountPage from '../pages/MyAccount.page.js';
-import DataGenerator from '../../../test/data/DataGenerator.js';
+import LoginPage from '../pages/Login.page';
+import MyAccountPage from '../pages/MyAccount.page';
+import DataGenerator from 'test/data/DataGenerator';
 
 
 Given('the user is on the login page of the Practice Software Testing site', async () => {
@@ -10,7 +10,7 @@ Given('the user is on the login page of the Practice Software Testing site', asy
 });
 
 Given('a newly registered user exists with unique valid credentials', async function () {
-    const generatedData = await DataGenerator.generateUniqueUserData();
+    const generatedData = DataGenerator.generateUniqueUserData();
     //POST API
     const response = await LoginPage.registerNewUser(generatedData);
     await expect(response.status).toEqual(201);
@@ -30,14 +30,14 @@ Then('the user should be redirected to the My account page', async () => {
 });
 
 Then("the user's name should be displayed in the header", async function () {
-    const expectedName = this.userData.firstName + ' ' + this.userData.lastName;
+    const expectedName = `${this.userData.firstName} ${this.userData.lastName}`;
     const userNameElementText = await MyAccountPage.getUserNameFromMenu();
     await expect(userNameElementText).toContain(expectedName);
 });
 
 //Invalid Logig
 When('the user enters an invalid email address or password', async () => {
-    const invalidData = await DataGenerator.generateInvalidDataToTest();
+    const invalidData = DataGenerator.generateInvalidDataToTest();
     await LoginPage.login(invalidData.email, invalidData.password);
 });
 

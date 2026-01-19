@@ -1,6 +1,6 @@
 import { When, Then } from '@wdio/cucumber-framework';
-import HomePage from '../pages/Home.page.js';
-import ProductPage from '../pages/Product.page.js'
+import HomePage from '../pages/Home.page';
+import ProductPage from '../pages/Product.page'
 
 
 When('the user clicks on a product title or image', async () => {

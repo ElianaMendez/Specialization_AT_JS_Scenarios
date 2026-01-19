@@ -1,3 +1,5 @@
+import path from "node:path";
+
 export const config = {
     //
     // ====================
@@ -161,11 +163,13 @@ export const config = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./src/business/po/step-definitions/**/*.js'],
+        require: [path.join(__dirname, '../../business/po/step-definitions/**/*.ts')],
+        //'../../business/po/step-definitions/**/*.ts'
+        //'./src/business/po/step-definitions/**/*.js'
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-        requireModule: [],
+        requireModule: ['ts-node/register'],
         // <boolean> invoke formatters without executing steps
         dryRun: false,
         // <boolean> abort the run on first failure
@@ -185,6 +189,13 @@ export const config = {
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
+
+    // Hook to capture screenshots on failure
+    afterStep: async function (step: any, scenario: any, result: any) {
+        if (!result.passed) {
+            await browser.takeScreenshot();
+        }
+    }
 
 
     //

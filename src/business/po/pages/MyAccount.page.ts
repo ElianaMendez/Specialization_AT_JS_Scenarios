@@ -1,24 +1,25 @@
 import BasePage from "../../../core/base/base.page";
+import type { ChainablePromiseElement } from 'webdriverio';
 
 class MyAccountPage extends BasePage {
 
-    get profileButton() { return $('a[routerlink="profile"]') }
-    get homeIconLink() { return $('a[class="nav-link active"]') }
-    get homeBrandLink() { return $('a[class="navbar-brand"]') }
-    get userMenuButton() { return $('[data-test="nav-menu"]') }
+    get profileButton(): ChainablePromiseElement { return $('a[routerlink="profile"]'); }
+    get homeIconLink(): ChainablePromiseElement { return $('a[class="nav-link active"]'); }
+    get homeBrandLink(): ChainablePromiseElement { return $('a[class="navbar-brand"]'); }
+    get userMenuButton(): ChainablePromiseElement { return $('[data-test="nav-menu"]'); }
 
-    async waitForAccountPageLoad() {
+    async waitForAccountPageLoad(): Promise<void> {
         await this.waitForPageLoad(this.userMenuButton, 'account');
     }
 
-    async getUserNameFromMenu() {
+    async getUserNameFromMenu(): Promise<string> {
         const maxAttempts = 3;
 
         for (let i = 0; i < maxAttempts; i++) {
             let name = await this.userMenuButton.getText();
             if (name && name.trim()) return name.trim();
 
-            name = await this.userMenuButton.getHTML(false);
+            name = await this.userMenuButton.getHTML({ includeSelectorTag: false });
             if (name && name.trim()) return name.trim();
 
             await browser.pause(500);
@@ -26,7 +27,7 @@ class MyAccountPage extends BasePage {
         return "";
     }
 
-    async goToHomePage() {
+    async goToHomePage(): Promise<void> {
         try {
             await this.click(this.homeIconLink);
         } catch {
@@ -34,7 +35,7 @@ class MyAccountPage extends BasePage {
         }
     }
 
-    async goToProfilePage() {
+    async goToProfilePage(): Promise<void> {
         await this.click(this.profileButton);
     }
 }
