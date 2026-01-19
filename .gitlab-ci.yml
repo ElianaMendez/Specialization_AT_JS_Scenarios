@@ -1,0 +1,28 @@
+stages:
+  - test
+  - report
+
+run_ui_tests:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.45.0-noble
+  script:
+    - npm ci  
+    - npm run test:smoke 
+  artifacts:
+    when: always
+    paths:
+      - allure-results/
+    expire_in: 1 day
+
+generate_report:
+  stage: report
+  image: node:20 
+  script:
+    - npm install -g allure-commandline
+    - allure generate allure-results --clean -o allure-report
+  artifacts:
+    when: always
+    paths:
+      - allure-report/
+  dependencies:
+    - run_ui_tests
