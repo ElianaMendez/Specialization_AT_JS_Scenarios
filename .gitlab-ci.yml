@@ -24,5 +24,6 @@ generate_report:
     when: always
     paths:
       - allure-report/
+      expire_in: 7 days
   dependencies:
     - run_ui_tests

@@ -164,7 +164,7 @@ export const config = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: [path.join(process.cwd(), './src/business/po/step-definitions/**/*.ts')],
+        require: ['./src/business/po/step-definitions/**/*.ts'],
         //path.join(__dirname, '../../business/po/step-definitions/**/*.ts')
         //'../../business/po/step-definitions/**/*.ts'
         //'./src/business/po/step-definitions/**/*.js'
