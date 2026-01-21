@@ -54,36 +54,53 @@ export const config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: [
-                '--headless=new',
-                '--window-size=1920,1080',
-                '--disable-gpu',
-                '--no-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-blink-features=AutomationControlled'
-            ]
+    capabilities: process.env.CI ? [
+        // CI environment - only Chrome
+        {
+            browserName: 'chrome',
+            'goog:chromeOptions': {
+                args: [
+                    '--headless=new',
+                    '--window-size=1920,1080',
+                    '--disable-gpu',
+                    '--no-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-blink-features=AutomationControlled'
+                ]
+            }
         }
-    },
-    {
-        browserName: 'firefox',
-        'moz:firefoxOptions': { args: ['-headless'] },
-    },
-    {
-        browserName: 'MicrosoftEdge',
-        'ms:edgeOptions': {
-            args: [
-                '--headless=new',
-                '--window-size=1920,1080',
-                '--disable-gpu',
-                '--no-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-blink-features=AutomationControlled'
-            ]
+    ] : [
+        // Local environment - all browsers
+        {
+            browserName: 'chrome',
+            'goog:chromeOptions': {
+                args: [
+                    '--headless=new',
+                    '--window-size=1920,1080',
+                    '--disable-gpu',
+                    '--no-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-blink-features=AutomationControlled'
+                ]
+            }
+        },
+        {
+            browserName: 'firefox',
+            'moz:firefoxOptions': { args: ['-headless'] },
+        },
+        {
+            browserName: 'MicrosoftEdge',
+            'ms:edgeOptions': {
+                args: [
+                    '--headless=new',
+                    '--window-size=1920,1080',
+                    '--disable-gpu',
+                    '--no-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-blink-features=AutomationControlled'
+                ]
+            }
         }
-    }
     ],
 
     //
@@ -159,7 +176,11 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec', ['allure', { outputDir: 'allure-results' }]],
+    reporters: ['spec', ['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+    }]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
