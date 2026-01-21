@@ -1,7 +1,6 @@
 stages:
   - test
-  - report
-  - deploy
+  - report 
 
 run_ui_tests:
   stage: test
@@ -24,6 +23,7 @@ generate_report:
   script:
     - npm install -g allure-commandline --silent
     - allure generate allure-results --clean -o allure-report
+    - echo " Report generated! open index.html in the 'allure-report' artifact "
   artifacts:
     when: always
     paths:
@@ -33,16 +33,3 @@ generate_report:
     - run_ui_tests
   needs:
     - run_ui_tests
-
-pages:
-  stage: deploy
-  script:
-    - mkdir -p public
-    - cp -r allure-report/* public/
-  artifacts:
-    paths:
-      - public
-  dependencies:
-    - generate_report
-  needs:
-    - generate_report
