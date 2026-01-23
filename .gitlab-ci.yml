@@ -7,6 +7,7 @@ run_ui_tests:
   image: mcr.microsoft.com/playwright:v1.49.0-jammy
   script:
     - npm ci
+    - rm -rf allure-results allure-report
     - npx wdio run wdio.conf.ts --cucumberOpts.tagExpression='@smoke'
   artifacts:
     when: always
@@ -22,8 +23,7 @@ generate_report:
     - apt-get update && apt-get install -y default-jre  
   script:
     - npm install -g allure-commandline --silent
-    - allure generate allure-results --clean -o allure-report
-    - echo " Report generated! open index.html in the 'allure-report' artifact "
+    - allure generate allure-results --clean -o allure-report    
   artifacts:
     when: always
     paths:
