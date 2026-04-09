@@ -13,7 +13,7 @@ export default class BrowserHelper {
     }
 
     static async setInputValue(element: ChainablePromiseElement, text: string | number ): Promise<void> {
-        await element.waitForDisplayed({ timeout: 10000 });
+        await element.waitForDisplayed({ timeout: 30000 });
         await element.clearValue(); //optional
         await element.setValue(text);
     }
