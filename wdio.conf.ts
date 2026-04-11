@@ -48,7 +48,9 @@ export const config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 3,
+    maxInstances: process.env.WDIO_MAX_INSTANCES
+    ? Number(process.env.WDIO_MAX_INSTANCES)
+    : 3,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -86,6 +88,7 @@ export const config = {
         },
         {
             browserName: 'firefox',
+            browserVersion: 'stable',
             'moz:firefoxOptions': { args: ['-headless'] },
         },
         {

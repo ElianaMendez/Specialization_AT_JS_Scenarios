@@ -25,6 +25,9 @@ jobs:
 
       - name: Run smoke tests
         run: npm run test:smoke
+        env:
+          CI: true
+          WDIO_MAX_INSTANCES: 2
 
       - name: Upload Allure results
         if: always()
