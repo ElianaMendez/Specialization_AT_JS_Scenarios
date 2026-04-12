@@ -2,7 +2,9 @@ import { ChainablePromiseElement } from 'webdriverio';
 
 export default class WaitHelper {
     // Adding constants for better maintenance
-    public static readonly PRODUCTS_TIMEOUT = 10000;
+    public static readonly PRODUCTS_TIMEOUT = process.env.CI
+    ? 60000
+    : 10000;
     public static readonly DEFAULT_TIMEOUT = 60000;
 
     /**
