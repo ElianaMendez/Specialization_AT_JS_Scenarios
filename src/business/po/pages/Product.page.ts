@@ -32,7 +32,15 @@ class ProductPage extends BasePage {
     }
 
     async getAddedToCartAlertText(): Promise<string> {
-        return await this.getText(this.productAddedAlertMessage);
+        const alert = this.productAddedAlertMessage;
+        await browser.waitUntil(async()=>{
+            const text = alert.getText();
+            return (await text).length> 0;
+        },{
+            timeout: 10000,
+            timeoutMsg: 'Alert appeared but contained no text after 10s'
+        });
+        return await this.getText(alert);
     }
 
     async waitForAlertMessageToDisappear(): Promise<void> {

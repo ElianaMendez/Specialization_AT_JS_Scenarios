@@ -34,7 +34,7 @@ export default class BasePage {
         await BrowserHelper.setInputValue(element, text);
     }
 
-    async waitForVisible(element: ChainablePromiseElement, customTimeout = 80000): Promise<void> {
+    async waitForVisible(element: ChainablePromiseElement, customTimeout = 60000):Promise<void> {     
         await BrowserHelper.waitForVisible(element, customTimeout);
     }
 

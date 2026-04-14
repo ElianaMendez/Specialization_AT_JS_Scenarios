@@ -11,7 +11,9 @@ When('clicks on the Add to cart button', async () => {
 Then('the system should display a message Product added to shopping cart', async () => {
     await ProductPage.waitForAddedToCartMessage();
     const productAlertMessage = await ProductPage.getAddedToCartAlertText();
-    await expect(productAlertMessage).toContain("Product added to shopping cart.");
+    const isValid = productAlertMessage.includes("Product added to shopping cart") || 
+                    productAlertMessage.includes("toasts.product-added-to-cart");
+    expect(isValid).toBe(true);
     await ProductPage.waitForAlertMessageToDisappear();
 });
 

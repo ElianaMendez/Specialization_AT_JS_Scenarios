@@ -7,11 +7,9 @@ const TEXT_TIMEOUT    = process.env.CI ? 60000 : 20000;
 const CLICK_TIMEOUT   = process.env.CI ? 60000 : 10000;
 
 export default class BrowserHelper {
-    static async waitForVisible(
-        element: ChainablePromiseElement,
-        customTimeout = DEFAULT_TIMEOUT
-    ): Promise<void> {
-        await element.waitForDisplayed({ timeout: customTimeout });
+
+    static async waitForVisible(element: ChainablePromiseElement, customTimeout = DEFAULT_TIMEOUT): Promise<void> {
+        await element.waitForDisplayed({timeout: customTimeout})  
     }
 
     static async click(element: ChainablePromiseElement): Promise<void> {
