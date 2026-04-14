@@ -114,9 +114,9 @@ export const config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'error',
-    /*     specFileRetries: 2,
-        specFileRetriesDelay: 0,
-        specFileRetriesDeferred: false, */
+    specFileRetries: process.env.CI ? 1 : 0,
+    specFileRetriesDelay: 5,
+    /*specFileRetriesDeferred: false, */
     //
     // Set specific log levels per logger
     // loggers:
