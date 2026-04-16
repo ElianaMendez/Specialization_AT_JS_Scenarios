@@ -30,7 +30,7 @@ jobs:
       - name: Run smoke tests
         run: npm run test:smoke
         env:
-          CI: true
+          CI: "true"
           WDIO_MAX_INSTANCES: 1
 
       - name: Upload Allure results
