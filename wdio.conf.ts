@@ -1,5 +1,3 @@
-import path from "node:path";
-
 export const config = {
     //
     // ====================
@@ -65,8 +63,10 @@ export const config = {
                     '--headless=new',
                     '--window-size=1920,1080',
                     '--disable-gpu',
+                    '--disable-extensions',
                     '--no-sandbox',
                     '--disable-dev-shm-usage',
+                    '--remote-debugging-port=9222',
                     '--disable-blink-features=AutomationControlled'
                 ]
             }
@@ -147,7 +147,7 @@ export const config = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 240000,
     //
     // Default request retries count
     connectionRetryCount: 3,
