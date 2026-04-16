@@ -1,5 +1,5 @@
 const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
-console.log(`>>> Running in CI: ${isCI} | Max Instances: ${isCI ? 1 : 3}`);
+//console.log(`>>> Running in CI: ${isCI} | Max Instances: ${isCI ? 1 : 3}`);
 
 export const config = {
     //
@@ -54,7 +54,7 @@ export const config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: process.env.CI ? [
+    capabilities: isCI ? [
         // CI environment - only Chrome
         {
             browserName: 'chrome',
@@ -114,7 +114,7 @@ export const config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'error',
-    specFileRetries: process.env.CI ? 1 : 0,
+    specFileRetries: isCI ? 1 : 0,
     specFileRetriesDelay: 5,
     /*specFileRetriesDeferred: false, */
     //
