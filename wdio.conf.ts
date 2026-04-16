@@ -23,12 +23,10 @@ export const config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: [
-        './src/test/features/**/*.feature'
-        //../../test/features/**/*.feature
-        //'./src/test/features/**/*.feature'
-        //'./src/test/features/**/*.feature'
-    ],
+    specs: process.env.CI 
+    ? [['./src/test/features/**/*.feature' ]] // CI → sequential
+    : ['./src/test/features/**/*.feature' ], // local → parallel
+
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -59,6 +57,7 @@ export const config = {
         // CI environment - only Chrome
         {
             browserName: 'chrome',
+            maxInstances: 1,
             'goog:chromeOptions': {
                 args: [
                     '--headless=new',
