@@ -1,4 +1,4 @@
-const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
+//const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
 //console.log(`>>> Running in CI: ${isCI} | Max Instances: ${isCI ? 1 : 3}`);
 
 export const config = {
@@ -49,12 +49,12 @@ export const config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: isCI ? 1 : 3,
+    maxInstances: 1,
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: isCI ? [
+    capabilities: process.env.CI ? [
         // CI environment - only Chrome
         {
             browserName: 'chrome',
@@ -114,8 +114,8 @@ export const config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'error',
-    specFileRetries: isCI ? 1 : 0,
-    specFileRetriesDelay: 5,
+    specFileRetries: 1,
+    specFileRetriesDelay: 10,
     /*specFileRetriesDeferred: false, */
     //
     // Set specific log levels per logger
