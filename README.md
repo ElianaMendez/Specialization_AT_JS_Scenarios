@@ -10,7 +10,7 @@ UI test automation framework built with WebdriverIO and Cucumber + TypeScript, t
 |--------|-------|-------------|
 | `main` | Initial setup | WDIO framework with BDD scenarios, multi-browser headless execution |
 | `feature/refactor` | Architecture | Page Object Model, layered architecture, DRY/KISS/YAGNI principles |
-| `feature/typescript` | Migration | Cucumber + TypeScript, tagged feature files, CI integration |
+| `feature/typescript` | Migration | Cucumber + TypeScript, tagged feature files, CI integration (GitLab CI + GitHub Actions) |
 
 ---
 
@@ -18,26 +18,40 @@ UI test automation framework built with WebdriverIO and Cucumber + TypeScript, t
 
 ### What it demonstrates
 - WebdriverIO setup from scratch with BDD configuration
-- 8 automated scenarios derived from Gherkin specs (sign-up, login, profile, product, cart, checkout, search, and more)
-- Headless execution in Chrome, Firefox, and Safari
-- Parallel execution with 2 concurrent instances
-- Automatic retry — tests re-run up to 2 times before being marked as failed
+- 8 automated scenarios derived from Gherkin specs (sign-up, login, profile, product, cart, checkout, and more)
+- Headless execution in Chrome, Firefox, and Edge
+- Parallel execution with multiple concurrent instances
+- Automatic retry — tests re-run before being marked as failed
 
 ### Tech stack
-`WebdriverIO` · `JavaScript` · `Node.js` · `Chrome` · `Firefox` · `Safari`
+`WebdriverIO` · `JavaScript` · `Node.js` · `Chrome` · `Firefox` · `Edge`
+
+### Project structure
+
+```
+src/
+├── config/
+│   └── wdio.conf.js
+├── features/
+│   └── 6 × .feature files
+├── pageObjects/
+│   └── 7 × .page.js files
+├── step-definitions/
+│   └── 6 × .steps.js files
+└── utils/
+    └── DataGenerator.js
+.gitignore
+package.json
+README.md
+```
 
 ### Run tests
 
 ```bash
 npm install
 
-# Run all tests (headless, parallel)
+# Run all tests
 npm test
-
-# Run in a specific browser
-npm run test:chrome
-npm run test:firefox
-npm run test:safari
 ```
 
 ---
@@ -48,23 +62,28 @@ npm run test:safari
 - Full refactor to the **Page Object Model** pattern — each page of the app has a dedicated class
 - **3-layer architecture** separating concerns clearly:
   - `core/` — reusable base classes, helpers, and utilities not tied to this specific app
-  - `business/` — page objects and actions specific to Practice Software Testing
-  - `tests/` — spec files and WDIO configuration
+  - `business/` — page objects and step definitions specific to Practice Software Testing
+  - `test/` — feature files, test data, and configuration
 - DRY, KISS, and YAGNI principles applied throughout — no duplicated selectors, no unnecessary abstractions
 
 ### Project structure
 
 ```
+src/
 ├── core/
-│   ├── base/          # BasePage class, shared actions
-│   └── helpers/       # Reusable utilities
+│   ├── base/          # BasePage class
+│   ├── config/        # wdio.conf.js
+│   └── helpers/       # browser.helper.js · wait.helper.js
 ├── business/
-│   ├── pages/         # Page Object classes per page/component
-│   └── actions/       # Business-level action sequences
-├── tests/
-│   ├── specs/         # Test spec files
-│   └── wdio.conf.js   # WDIO configuration
-└── package.json
+│   └── po/
+│       ├── pages/           # 6 × .page.js files
+│       └── step-definitions/ # 6 × .steps.js files
+└── test/
+    ├── data/          # DataGenerator.js
+    └── features/      # 6 × .feature files
+.gitignore
+package.json
+README.md
 ```
 
 ### Run tests
@@ -77,14 +96,40 @@ npm test
 
 ---
 
-## Branch: `feature/typescript` — Cucumber + TypeScript
+## Branch: `feature/typescript` — Cucumber + TypeScript + CI
 
 ### What it demonstrates
-- Migration of all UI tests to **Cucumber + TypeScript**
+- Migration of all UI tests to **Cucumber + TypeScript** — pages, step definitions, helpers, data generators, and configuration fully typed
 - Feature files written in Gherkin with `@tags` for targeted execution
 - Step definitions fully typed with TypeScript
-- CLI script to run tests filtered by tag
-- Integrated with CI pipeline — tests run on every push
+- CI-aware configuration — sequential execution and Chrome-only in CI, parallel multi-browser locally
+- Screenshot capture on test failure via `afterStep` hook
+- Integrated with **GitLab CI** and **GitHub Actions** — tests run automatically on every push
+
+### Project structure
+
+```
+src/
+├── core/
+│   ├── base/          # base.page.ts
+│   └── helpers/       # browser.helper.ts · wait.helper.ts
+├── business/
+│   └── po/
+│       ├── pages/           # 6 × .page.ts files
+│       └── step-definitions/ # 6 × .steps.ts files
+└── test/
+    ├── data/          # DataGenerator.ts
+    └── features/      # 6 × .feature files
+.gitignore
+.gitlab-ci.yml
+.github/
+└── workflows/
+    └── ui-tests.yml   # GitHub Actions pipeline
+package.json
+README.md
+tsconfig.json
+wdio.conf.ts
+```
 
 ### Run tests
 
@@ -92,25 +137,61 @@ npm test
 git checkout feature/typescript
 npm install
 
-# Run all Cucumber tests
-npm run test:cucumber
+# Run all tests
+npm test
 
-# Run by tag
-npm run test:cucumber -- --tags @login
-npm run test:cucumber -- --tags @checkout
-npm run test:cucumber -- --tags @smoke
+# Run smoke tests only (cleans reports first)
+npm run test:smoke
+
+# Run by feature
+npm run test:register
+npm run test:login
+npm run test:profile
+npm run test:homeProduct
+npm run test:basket
+npm run test:checkout
+
+# Run login tests by tag
+npm run test:validLogin
+npm run test:invalidLogin
 ```
 
 ### Available tags
 
 | Tag | Covers |
 |-----|--------|
-| `@smoke` | Critical happy-path scenarios |
-| `@login` | Sign-in and sign-up flows |
-| `@profile` | User profile management |
-| `@product` | Product details and search |
-| `@cart` | Basket and add-to-cart flows |
-| `@checkout` | Full checkout with multiple payment methods |
+| `@smoke` | Critical happy-path scenarios across all features |
+| `@validLogin` | Successful login with valid credentials |
+| `@invalidLogin` | Login attempt with invalid credentials |
+
+### Reports
+
+```bash
+# Generate Allure report
+npm run report:generate
+
+# Open generated report
+npm run report:open
+
+# Serve live report from results
+npm run report:serve
+
+# Run smoke tests and open report in one command
+npm run test:smoke:report
+```
+
+### CI configuration
+
+| Environment | Browsers | Execution | Spec grouping |
+|-------------|----------|-----------|---------------|
+| Local | Chrome · Firefox · Edge | Parallel | Independent per feature |
+| CI (GitLab / GitHub Actions) | Chrome only | Sequential | All features grouped |
+
+CI-specific settings in `wdio.conf.ts`:
+- `maxInstances: 1` — single worker in CI
+- `connectionRetryTimeout: 240000` — extended connection timeout
+- `specFileRetries: 1` with `specFileRetriesDelay: 10` — automatic retry on failure
+- Screenshots captured automatically on step failure
 
 ---
 
@@ -131,7 +212,7 @@ All 8 BDD scenarios from the test design phase are automated:
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 18.20.3
 - npm 9+
-- Chrome, Firefox, and Safari installed locally (for non-headless runs)
-
+- Chrome, Firefox, and Edge installed locally (for non-headless runs)
+- Allure CLI installed globally for report generation (`npm install -g allure-commandline`)
