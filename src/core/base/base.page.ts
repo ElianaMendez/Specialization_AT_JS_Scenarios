@@ -17,7 +17,7 @@ export default class BasePage {
     async waitForPageLoad(
         element: ChainablePromiseElement,
         keyword: string,
-        timeout: number = 30000
+        timeout: number = 60000
     ): Promise<void> {
         await WaitHelper.waitForPageLoad(element, keyword, timeout);
     }

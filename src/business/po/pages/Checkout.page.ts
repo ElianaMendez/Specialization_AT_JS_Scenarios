@@ -9,6 +9,7 @@ interface AddressData {
     state?: string;
     country?: string;
     postalCode?: string;
+    houseNumber?: string | number;
 }
 
 interface PaymentData {
@@ -48,6 +49,7 @@ class CheckoutPage extends BasePage {
     get inputState(): ChainablePromiseElement { return $('#state'); }
     get inputCountry(): ChainablePromiseElement { return $('#country'); }
     get inputPostalCode(): ChainablePromiseElement { return $('#postal_code'); }
+    get inputHouseNumber(): ChainablePromiseElement { return $('#house_number'); }
     // Payment Fields
     get paymentMethodField(): ChainablePromiseElement { return $('#payment-method'); }
     // Bank Transfer Fields
@@ -72,25 +74,30 @@ class CheckoutPage extends BasePage {
     async fillBillingAddress(addressData: AddressData | null = null): Promise<void> {
         const address = addressData || {
             street: '123 Main Street',
-            city: 'New York',
-            state: 'NY',
-            country: 'USA',
-            postalCode: '10001'
+            city: 'Cartagena',
+            state: 'BOL',
+            country: 'Colombia',
+            postalCode: '10001',
+            houseNumber: '42'
         };
 
-        const fieldsToFill = [
-            { element: this.inputStreet, value: address.street },
-            { element: this.inputCity, value: address.city },
-            { element: this.inputState, value: address.state },
-            { element: this.inputCountry, value: address.country },
-            { element: this.inputPostalCode, value: address.postalCode },
-        ];
+        await this.inputStreet.waitForDisplayed({timeout:1000});
 
-        for (const field of fieldsToFill) {
-            if (field.value) {
-                await this.setInputValue(field.element, field.value);
-            }
+        await this.setInputValue(this.inputStreet, String(address.street));
+        await this.setInputValue(this.inputCity, String(address.city));
+        
+        // If these are selects, do not use setInputValue
+        const countryTag = await this.inputCountry.getTagName();
+
+        if (countryTag.toLowerCase() === 'select') {
+            await this.inputCountry.selectByVisibleText(String(address.country));
+        }else{
+            await this.setInputValue(this.inputCountry, String(address.country));
         }
+
+        await this.setInputValue(this.inputState, String(address.state));
+        await this.setInputValue(this.inputPostalCode, String(address.postalCode));
+        await this.setInputValue(this.inputHouseNumber, String(address.houseNumber));        
     }
 
     async selectPaymentMethod(paymentMethod: PaymentMethod): Promise<void> {

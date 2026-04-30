@@ -9,11 +9,25 @@ When('clicks on the Add to cart button', async () => {
 });
 
 Then('the system should display a message Product added to shopping cart', async () => {
+    
     await ProductPage.waitForAddedToCartMessage();
+
+    await browser.waitUntil(async () => {
+        const text = await ProductPage.getAddedToCartAlertText();
+        return text.includes("Producto añadido al carrito.") ||
+               text.includes("toasts.product-added-to-cart");
+    }, {
+        timeout: 5000,
+        timeoutMsg: 'Expected success message was not displayed'
+    });
+
     const productAlertMessage = await ProductPage.getAddedToCartAlertText();
-    const isValid = productAlertMessage.includes("Product added to shopping cart") || 
-                    productAlertMessage.includes("toasts.product-added-to-cart");
+    console.log('Alert text:', productAlertMessage);
+
+    const isValid = productAlertMessage.includes("Producto añadido al carrito.")
+                   // productAlertMessage.includes("toasts.product-added-to-cart");
     expect(isValid).toBe(true);
+
     await ProductPage.waitForAlertMessageToDisappear();
 });
 

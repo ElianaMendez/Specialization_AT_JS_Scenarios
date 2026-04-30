@@ -6,6 +6,7 @@ interface RegistrationData {
   lastName: string;
   dateOfBirth: string;
   street: string;
+  houseNumber: number;
   postalCode: string;
   city: string;
   state: string;
@@ -20,6 +21,7 @@ class RegisterPage extends BasePage {
   get lastNameInput(): ChainablePromiseElement { return $('#last_name'); }
   get dateofBirthInput(): ChainablePromiseElement { return $('#dob'); }
   get streetInput(): ChainablePromiseElement { return $('input[id="street"]'); }
+  get houseNumberInput(): ChainablePromiseElement { return $('input[id="house_number"]')}
   get postalCodeInput(): ChainablePromiseElement { return $('#postal_code'); }
   get cityInput(): ChainablePromiseElement { return $('input[id="city"]'); }
   get stateInput(): ChainablePromiseElement { return $('input[id="state"]'); }
@@ -34,6 +36,7 @@ class RegisterPage extends BasePage {
     await this.setInputValue(this.lastNameInput, data.lastName);
     await this.setInputValue(this.dateofBirthInput, data.dateOfBirth);
     await this.setInputValue(this.streetInput, data.street);
+    await this.setInputValue(this.houseNumberInput, data.houseNumber);
     await this.setInputValue(this.postalCodeInput, data.postalCode);
     await this.setInputValue(this.cityInput, data.city);
     await this.setInputValue(this.stateInput, data.state);

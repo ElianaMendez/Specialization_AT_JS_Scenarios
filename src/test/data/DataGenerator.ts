@@ -3,6 +3,7 @@ export interface RegistrationData {
     lastName: string;
     dateOfBirth: string;
     street: string;
+    houseNumber: number;
     postalCode: string;
     city: string;
     state: string;
@@ -25,6 +26,7 @@ class DataGenerator {
             lastName: 'Doe',
             dateOfBirth: '1985-02-01',
             street: 'calle 30',
+            houseNumber: 53,
             postalCode: '12005',
             city: 'Fantastica',
             state: 'Bolívar',

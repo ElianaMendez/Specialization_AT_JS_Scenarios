@@ -23,7 +23,7 @@ export default class BrowserHelper {
         text: string | number
     ): Promise<void> {
         await element.waitForDisplayed({ timeout: INPUT_TIMEOUT });
-        await element.clearValue();
+        //await element.clearValue();
         await element.setValue(text);
     }
 

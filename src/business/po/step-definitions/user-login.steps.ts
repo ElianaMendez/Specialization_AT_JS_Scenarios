@@ -17,6 +17,7 @@ Given('a newly registered user exists with unique valid credentials', async func
     this.userData = generatedData;
 });
 
+
 When('the user enters a valid email address and password', async function () {
     await LoginPage.login(this.userData.email, this.userData.password);
 });

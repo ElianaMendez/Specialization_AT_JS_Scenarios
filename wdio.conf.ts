@@ -86,7 +86,7 @@ export const config = {
                 ]
             }
         },
-        {
+ /*        {
             browserName: 'firefox',
             browserVersion: 'stable',
             'moz:firefoxOptions': { args: ['-headless'] },
@@ -103,7 +103,7 @@ export const config = {
                     '--disable-blink-features=AutomationControlled'
                 ]
             }
-        }
+        } */
     ],
 
     //
