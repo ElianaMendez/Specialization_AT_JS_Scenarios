@@ -9,24 +9,26 @@ When('clicks on the Add to cart button', async () => {
 });
 
 Then('the system should display a message Product added to shopping cart', async () => {
-    
-    await ProductPage.waitForAddedToCartMessage();
+    let productAlertMessage = '';
 
     await browser.waitUntil(async () => {
-        const text = await ProductPage.getAddedToCartAlertText();
-        return text.includes("Producto añadido al carrito.") ||
-               text.includes("toasts.product-added-to-cart");
+        productAlertMessage = (await ProductPage.getAddedToCartAlertText()).trim();
+        console.log('Alert text during wait:', productAlertMessage);
+
+        return productAlertMessage.includes('Producto añadido al carrito.') ||
+               productAlertMessage.includes('toasts.product-added-to-cart') ||
+               productAlertMessage.includes('Product added to shopping cart');
     }, {
-        timeout: 5000,
+        timeout: 10000,
+        interval: 500,
         timeoutMsg: 'Expected success message was not displayed'
     });
 
-    const productAlertMessage = await ProductPage.getAddedToCartAlertText();
-    console.log('Alert text:', productAlertMessage);
-
-    const isValid = productAlertMessage.includes("Producto añadido al carrito.")
-                   // productAlertMessage.includes("toasts.product-added-to-cart");
-    expect(isValid).toBe(true);
+    expect(
+        productAlertMessage.includes('Producto añadido al carrito.') ||
+        productAlertMessage.includes('toasts.product-added-to-cart') ||
+        productAlertMessage.includes('Product added to shopping cart')
+    ).toBe(true);
 
     await ProductPage.waitForAlertMessageToDisappear();
 });

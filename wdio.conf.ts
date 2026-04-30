@@ -73,7 +73,7 @@ export const config = {
         }
     ] : [
         // Local environment - all browsers
-        {
+       {
             browserName: 'chrome',
             'goog:chromeOptions': {
                 args: [
@@ -85,12 +85,12 @@ export const config = {
                     '--disable-blink-features=AutomationControlled'
                 ]
             }
-        },
- /*        {
+        }, 
+        {
             browserName: 'firefox',
             browserVersion: 'stable',
             'moz:firefoxOptions': { args: ['-headless'] },
-        },
+        }, 
         {
             browserName: 'MicrosoftEdge',
             'ms:edgeOptions': {
@@ -103,7 +103,7 @@ export const config = {
                     '--disable-blink-features=AutomationControlled'
                 ]
             }
-        } */
+        }
     ],
 
     //

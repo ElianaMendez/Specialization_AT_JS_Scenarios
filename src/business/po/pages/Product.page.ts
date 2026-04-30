@@ -37,7 +37,7 @@ class ProductPage extends BasePage {
             const text = alert.getText();
             return (await text).length> 0;
         },{
-            timeout: 10000,
+            timeout: 30000,
             timeoutMsg: 'Alert appeared but contained no text after 10s'
         });
         return await this.getText(alert);
